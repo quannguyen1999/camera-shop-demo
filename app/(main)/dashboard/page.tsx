@@ -1,5 +1,6 @@
 import { CarouselToggle } from "@/components/carousel-toggle";
 import { DashboardCarousel } from "@/components/dashboard/dashboard-carousel";
+import { ProductBody } from "@/components/product/product-body";
 import { SeparatorItem } from "@/components/separator/separator-item";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -20,15 +21,13 @@ const dancingScript = Dancing_Script({
 
 const DashboardPage = () => {
   return (
-    <div className={cn("flex flex-col gap-4", dancingScript.className)}>
+    <div className={cn("flex flex-col gap-4 bg-gray-100", dancingScript.className)}>
       <DashboardCarousel />
       <div className="px-4">
-        {" "}
         <SeparatorItem name="SẢN PHẨM BÁN CHẠY" />
       </div>
-
+      <ProductBody />
       <div className="px-4">
-        {" "}
         <SeparatorItem name="PHÔNG NỀN CHỤP ẢNH" />
       </div>
     </div>
