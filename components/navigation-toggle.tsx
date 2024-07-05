@@ -18,7 +18,7 @@ export const NavigationToggle = ({header, body, colorTextHeader}: BadNavigationP
     <NavigationMenu className="bg-transparent">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={cn("bg-transparent  hover:bg-transparent focus:bg-transparent active:bg-transparent", `hover:${colorTextHeader}`)}>
+          <NavigationMenuTrigger className={cn("bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent", `hover:${colorTextHeader}`)}>
             {header}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="left-0">

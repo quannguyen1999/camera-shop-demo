@@ -21,7 +21,7 @@ const dancingScript = Dancing_Script({
 
 const DashboardPage = () => {
   return (
-    <div className={cn("flex flex-col gap-4 bg-gray-100", dancingScript.className)}>
+    <div className={cn("flex flex-col gap-4 bg-gray-100", )}>
       <DashboardCarousel />
       <div className="px-4">
         <SeparatorItem name="SẢN PHẨM BÁN CHẠY" />
@@ -30,6 +30,7 @@ const DashboardPage = () => {
       <div className="px-4">
         <SeparatorItem name="PHÔNG NỀN CHỤP ẢNH" />
       </div>
+      <ProductBody />
     </div>
   );
 };

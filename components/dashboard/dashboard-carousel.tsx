@@ -3,13 +3,19 @@ import { CarouselToggle } from "../carousel-toggle";
 import { DashboardItemCarousel } from "./dashboard-item-carousel";
 import { ImageShadow } from "../image/image-shadow";
 import { Button } from "../ui/button";
-
+import { Dancing_Script } from "next/font/google";
+import { cn } from "@/lib/utils";
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // specify the weights you need
+  display: "swap", // optional: controls the font-display value
+});
 const items = [
   <ImageShadow
     body={
       <>
-        <div className="flex flex-col items-center text-white font-bold text-2xl">
-          <p>Đạo cụ chụp ảnh</p>
+        <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
+          <p>Đạo cụ</p>
           <p>Phồng nền, đồ trang trí,...</p>
         </div>
         <div>
@@ -28,7 +34,7 @@ const items = [
   <ImageShadow
     body={
       <>
-        <div className="flex flex-col items-center text-white font-bold text-2xl">
+         <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
           <p>Đạo cụ xx ảnh</p>
           <p>Phồng nền, đồ trang trí,...</p>
         </div>

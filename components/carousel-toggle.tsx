@@ -1,3 +1,5 @@
+'use client'
+import React from "react";
 import {
   Carousel,
   CarouselContent,
@@ -5,7 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-
+import Autoplay from "embla-carousel-autoplay"
+ 
 interface CarouselToggleProps {
   items: React.ReactNode[]
 }
@@ -13,8 +16,15 @@ interface CarouselToggleProps {
 export const CarouselToggle = ({
   items
 }: CarouselToggleProps) => {
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  )
   return (
-      <Carousel className="w-full">
+      <Carousel className="w-full"
+      plugins={[plugin.current]}
+    
+     
+      >
       <CarouselContent>
 
         {
@@ -26,6 +36,7 @@ export const CarouselToggle = ({
           </CarouselItem>
           ))
         }
+       
       </CarouselContent>
     </Carousel>
   );

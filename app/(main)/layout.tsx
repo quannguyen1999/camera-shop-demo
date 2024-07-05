@@ -1,31 +1,37 @@
+'use client'
+import { FooterBody } from "@/components/footer/footer-body";
 import NavigationSidebar from "@/components/navigation/navigation-sidebar";
 import SideBarHeader from "@/components/sidebar/sidebar-header";
 import { cn } from "@/lib/utils";
 import { Dancing_Script } from "next/font/google";
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // specify the weights you need
-  display: "swap", // optional: controls the font-display value
-});
+import { useEffect, useState } from "react";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 800);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col h-screen">
-      <div
-        className={cn(
-          "fixed z-10 w-full h-24 top-0 left-0 bg-white",
-          dancingScript.className
-        )}
-      >
-        <NavigationSidebar />
-        <SideBarHeader />
+      <div className={cn("fixed z-10 w-full h-24 top-0 left-0 bg-transparent")}>
+        <NavigationSidebar isScrolled={isScrolled}/>
+        <SideBarHeader isScrolled={isScrolled}/>
       </div>
-      <div className="flex-1 mt-24">{children}</div>
+      <div className="flex-1">{children}</div>
+      <FooterBody />
     </div>
   );
 };

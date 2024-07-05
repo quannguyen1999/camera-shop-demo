@@ -10,7 +10,7 @@ interface MenuItemProps {
 export const MenuBody = ({ nameHeader, listChild }: MenuItemProps) => {
     return (
       
-      <NavigationToggle colorTextHeader="text-white" header={<MenuHeader nameHeader={nameHeader} />} body={<MenuItems listChild={listChild} />} />
+      <NavigationToggle colorTextHeader="text-black" header={<MenuHeader nameHeader={nameHeader} />} body={<MenuItems listChild={listChild} />} />
    
        
     )

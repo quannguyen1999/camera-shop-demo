@@ -5,14 +5,28 @@ import { BadToggle } from "../bag/bag-toggle";
 import { NavigationToggle } from "../navigation-toggle";
 import { BagHeader } from "../bag/bag-header";
 import { BagBody } from "../bag/bag-body";
+import { Dancing_Script } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-const NavigationSidebar = () => {
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // specify the weights you need
+  display: "swap", // optional: controls the font-display value
+});
+
+interface NavigationSidebarProps {
+  isScrolled: boolean
+}
+
+const NavigationSidebar = ({
+  isScrolled
+}: NavigationSidebarProps) => {
   return (
-    <div className="px-12 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center">
+    <div className={cn("px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
       <div className="flex md:hidden items-center">
         <MobileToggle />
       </div>
-      <div className="flex flex-col gap-1 flex-1 md:flex-none cursor-pointer">
+      <div className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer", dancingScript.className)}>
         <div className="flex flex-col justify-center items-center">
           <Image
             src="/logo.svg"
@@ -29,7 +43,7 @@ const NavigationSidebar = () => {
         <NavigationInput />
       </div>
       <div className="hidden md:flex flex-row gap-2 items-center">
-        <NavigationToggle header={<BagHeader/>} body={<BagBody />} colorTextHeader="text-black"/>
+        <NavigationToggle header={<BagHeader isScroll={isScrolled}/>} body={<BagBody />} colorTextHeader="text-black"/>
       </div>
       <div className="flex md:hidden flex-row gap-2 items-center">
         <BadToggle />

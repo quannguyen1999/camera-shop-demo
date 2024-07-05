@@ -1,6 +1,7 @@
 import { MapPin, Mail, Phone, ChevronDown } from "lucide-react";
 import { MenuBody } from "../menu/menu-body";
 import { ActionTooltip } from "../action-tooltip";
+import { cn } from "@/lib/utils";
 
 const listMenu = [
   {
@@ -70,10 +71,14 @@ const listMenu = [
     ],
   },
 ];
-
-const SideBarHeader = () => {
+interface NavigationSidebarProps {
+    isScrolled: boolean
+  }
+const SideBarHeader = ({
+    isScrolled
+}: NavigationSidebarProps) => {
   return (
-    <div className="hidden h-14 w-full px-8 bg-yellow-700 text-white md:grid md:grid-cols-2">
+    <div className={cn("hidden h-14 w-full px-8 text-white md:grid md:grid-cols-2", isScrolled ? 'bg-white text-black hover:text-black' : '')}>
       <div className="flex flex-row gap-5 text-sm">
         {listMenu.map((t) => (
           <MenuBody
