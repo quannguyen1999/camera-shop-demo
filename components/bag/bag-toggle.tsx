@@ -17,9 +17,9 @@ export const BadToggle = () => {
       <SheetTrigger asChild>
         <div className="cursor-pointer">
           <div className="relative">
-            <ShoppingBag size={25} className="text-gray-500" />
-            <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-700 rounded-full">
-              <p className="text-xs text-white ">6</p>
+            <ShoppingBag size={15} className="text-gray-500" />
+            <div className="absolute -top-1 -right-1 h-3 w-3 bg-green-700 rounded-full">
+              <p className="text-[8px] text-white ">6</p>
             </div>
           </div>
         </div>

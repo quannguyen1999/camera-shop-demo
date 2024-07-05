@@ -10,7 +10,7 @@ export const BagBody = () => {
   return (
     <div className="flex flex-col gap-3">
       <ScrollArea className="h-60 rounded-md border">     
-        <div className="flex-1">
+        <div className="flex-1 justify-center">
           {fakeData.map((t) => (
             <BadItem
               key={t}
