@@ -17,8 +17,8 @@ const NavigationSidebar = () => {
           <Image
             src="/logo.svg"
             alt="Upload"
-            width={65}
-            height={65}
+            width={35}
+            height={35}
             className="rounded-full"
           />
         </div>

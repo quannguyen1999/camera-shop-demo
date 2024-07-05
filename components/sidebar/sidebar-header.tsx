@@ -73,7 +73,7 @@ const listMenu = [
 
 const SideBarHeader = () => {
   return (
-    <div className="hidden h-14 w-full px-8 bg-green-700 text-white md:grid md:grid-cols-2">
+    <div className="hidden h-14 w-full px-8 bg-yellow-700 text-white md:grid md:grid-cols-2">
       <div className="flex flex-row gap-5 text-sm">
         {listMenu.map((t) => (
           <MenuBody
