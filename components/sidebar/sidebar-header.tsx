@@ -1,7 +1,7 @@
 import { MapPin,Mail,Phone, ChevronDown } from "lucide-react";
 
 const SideBarHeader = () => {
-    return <div className="h-14 w-full px-12 bg-green-700 text-white grid grid-cols-2">
+    return <div className="hidden h-14 w-full px-12 bg-green-700 text-white md:grid md:grid-cols-2">
         <div className="flex flex-row gap-5 text-sm">
             <div className=" cursor-pointer flex flex-row text-center justify-center items-center">
                 <p>Phụ kiện chụp ảnh</p>
