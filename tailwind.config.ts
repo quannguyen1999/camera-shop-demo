@@ -19,6 +19,7 @@ const config = {
       },
     },
     extend: {
+      
       fontFamily: {
         playwriteCO: ['Playwrite CO', 'sans-serif'],
         playwriteSK: ['Playwrite SK', 'sans-serif'],

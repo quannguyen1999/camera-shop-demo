@@ -7,24 +7,24 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
+import { cn } from "@/lib/utils";
 interface BadNavigationProps {
     header: React.ReactNode,
-    body: React.ReactNode
+    body: React.ReactNode,
+    colorTextHeader: 'text-black' | 'text-white';
 }
-export const NavigationToggle = ({header, body}: BadNavigationProps) => {
+export const NavigationToggle = ({header, body, colorTextHeader}: BadNavigationProps) => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="bg-transparent">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="hover:bg-transparent focus:bg-transparent active:bg-transparent">
+          <NavigationMenuTrigger className={cn("bg-transparent  hover:bg-transparent focus:bg-transparent active:bg-transparent", `hover:${colorTextHeader}`)}>
             {header}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="left-0">
-            <ul className="grid gap-3 w-[200px] p-2">
+            <ul className="grid gap-3 w-[200px]">
               <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                   {body}
-                </NavigationMenuLink>
+              {body}
               </li>
             </ul>
           </NavigationMenuContent>

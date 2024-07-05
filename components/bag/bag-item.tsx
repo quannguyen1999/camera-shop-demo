@@ -19,7 +19,7 @@ export const BadItem = ({
     totalItem
 }: BadItemProps) => {
   return (
-    <div className="flex flex-row p-1 gap-2">
+    <div className="flex flex-row p-1 gap-2 hover:bg-gray-100 cursor-pointer">
       <div>
         <Image height={40} width={40} src={url} alt="logo" />
       </div>

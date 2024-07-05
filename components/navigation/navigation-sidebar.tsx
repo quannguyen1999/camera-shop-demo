@@ -12,7 +12,7 @@ const NavigationSidebar = () => {
       <div className="flex md:hidden items-center">
         <MobileToggle />
       </div>
-      <div className="flex flex-col gap-1 flex-1 md:flex-none">
+      <div className="flex flex-col gap-1 flex-1 md:flex-none cursor-pointer">
         <div className="flex flex-col justify-center items-center">
           <Image
             src="/logo.svg"
@@ -29,7 +29,7 @@ const NavigationSidebar = () => {
         <NavigationInput />
       </div>
       <div className="hidden md:flex flex-row gap-2 items-center">
-        <NavigationToggle header={<BagHeader/>} body={<BagBody />}/>
+        <NavigationToggle header={<BagHeader/>} body={<BagBody />} colorTextHeader="text-black"/>
       </div>
       <div className="flex md:hidden flex-row gap-2 items-center">
         <BadToggle />
