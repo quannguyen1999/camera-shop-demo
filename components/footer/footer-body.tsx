@@ -2,11 +2,6 @@ import { cn } from "@/lib/utils";
 import { Book, Facebook, Instagram, Ticket } from "lucide-react";
 import { Dancing_Script } from "next/font/google";
 import Image from "next/image";
-const dancingScript = Dancing_Script({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // specify the weights you need
-    display: "swap", // optional: controls the font-display value
-  });
 export const FooterBody = () => {
   return (
     <div className="mt-5 gap-5 p-10 bg-yellow-800 text-white flex flex-col md:flex-row">
@@ -19,10 +14,10 @@ export const FooterBody = () => {
           className="rounded-full"
         />
       </div>
-      <div className={cn(" flex flex-col items-center justify-center", dancingScript.className)}>
+      <div className={cn(" flex flex-col items-center justify-center",)}>
         <div className="uppercase">
           <p>QUEENIE'S</p>
-          <p className="text-xs text-green-300">Phụ Kiện Xinh</p>
+          <p className="text-xs ">Phụ Kiện Xinh</p>
         </div>
       </div>
       <div className="flex flex-col gap-4 flex-1 justify-center items-center">

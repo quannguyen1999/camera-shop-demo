@@ -8,12 +8,6 @@ import { BagBody } from "../bag/bag-body";
 import { Dancing_Script } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // specify the weights you need
-  display: "swap", // optional: controls the font-display value
-});
-
 interface NavigationSidebarProps {
   isScrolled: boolean
 }
@@ -26,7 +20,7 @@ const NavigationSidebar = ({
       <div className="flex md:hidden items-center">
         <MobileToggle />
       </div>
-      <div className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer", dancingScript.className)}>
+      <div className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer")}>
         <div className="flex flex-col justify-center items-center">
           <Image
             src="/logo.svg"
@@ -37,7 +31,7 @@ const NavigationSidebar = ({
           />
         </div>
         <div className="text-xs uppercase">Queenie’s</div>
-        <div className="text-xs uppercase text-green-600">Decor </div>
+        <div className="text-xs uppercase ">Decor </div>
       </div>
       <div className="flex-1 hidden md:flex">
         <NavigationInput />

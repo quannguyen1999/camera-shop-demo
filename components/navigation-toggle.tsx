@@ -22,7 +22,7 @@ export const NavigationToggle = ({header, body, colorTextHeader}: BadNavigationP
             {header}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="left-0">
-            <ul className="grid gap-3 w-[200px]">
+            <ul className="grid gap-3 w-[220px]">
               <li className="row-span-3">
               {body}
               </li>

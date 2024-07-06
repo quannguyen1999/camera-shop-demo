@@ -17,7 +17,7 @@ export const CarouselToggle = ({
   items
 }: CarouselToggleProps) => {
   const plugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
+    Autoplay({ delay: 7000, stopOnInteraction: true })
   )
   return (
       <Carousel className="w-full"
