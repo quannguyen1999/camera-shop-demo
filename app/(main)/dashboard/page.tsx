@@ -1,3 +1,4 @@
+import { InfScroll } from "@/components/InfScroll";
 import { CarouselToggle } from "@/components/carousel-toggle";
 import { DashboardCarousel } from "@/components/dashboard/dashboard-carousel";
 import { ProductBody } from "@/components/product/product-body";
@@ -10,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Dancing_Script } from "next/font/google";
 
@@ -27,6 +29,8 @@ const DashboardPage = () => {
         <SeparatorItem name="SẢN PHẨM BÁN CHẠY" />
       </div>
       <ProductBody />
+      <Separator />
+      <InfScroll />
       <div className="px-4">
         <SeparatorItem name="PHÔNG NỀN CHỤP ẢNH" />
       </div>

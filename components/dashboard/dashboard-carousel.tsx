@@ -29,6 +29,66 @@ const items = [
       </>
     }
     key={1}
+    imageUrl="bg-[url('/images/dashboard_1.png')] "
+  />,
+  <ImageShadow
+    body={
+      <>
+         <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
+          <p>Đạo cụ xx ảnh</p>
+          <p>Phồng nền, đồ trang trí,...</p>
+        </div>
+        <div>
+          <Button
+            variant="outline"
+            className="border-none hover:bg-yellow-800 hover:text-white transition-all"
+          >
+            Xem ngay{" "}
+          </Button>
+        </div>
+      </>
+    }
+    key={2}
+    imageUrl="bg-[url('/images/dashboard_1.PNG')] "
+  />,
+  <ImageShadow
+    body={
+      <>
+         <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
+          <p>Đạo cụ xx ảnh</p>
+          <p>Phồng nền, đồ trang trí,...</p>
+        </div>
+        <div>
+          <Button
+            variant="outline"
+            className="border-none hover:bg-yellow-800 hover:text-white transition-all"
+          >
+            Xem ngay{" "}
+          </Button>
+        </div>
+      </>
+    }
+    key={2}
+    imageUrl="bg-[url('/images/dashboard_1.PNG')] "
+  />,
+  <ImageShadow
+    body={
+      <>
+         <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
+          <p>Đạo cụ xx ảnh</p>
+          <p>Phồng nền, đồ trang trí,...</p>
+        </div>
+        <div>
+          <Button
+            variant="outline"
+            className="border-none hover:bg-yellow-800 hover:text-white transition-all"
+          >
+            Xem ngay{" "}
+          </Button>
+        </div>
+      </>
+    }
+    key={2}
     imageUrl="bg-[url('/images/dashboard_1.PNG')] "
   />,
   <ImageShadow
@@ -53,5 +113,5 @@ const items = [
   />,
 ];
 export const DashboardCarousel = () => {
-  return <CarouselToggle items={items} />;
+  return <CarouselToggle items={items} deplay={5000}/>;
 };

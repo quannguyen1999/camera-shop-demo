@@ -2,6 +2,36 @@
   @tailwind components;
   @tailwind utilities;
 
+  .wrap{
+    height: 65vh;
+    margin-top: 17vh;
+    display: grid;
+    grid-auto-columns: 23.5vw;
+    grid-auto-flow: column;
+    width: min-content;
+    gap: 2vw;
+  }
+
+  /* html.lenis, html.lenis body {
+    height: auto;
+  }
+  
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  } */
+  
   @layer base {
     :root {
       --background: 0 0% 100%;

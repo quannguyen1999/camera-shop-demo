@@ -30,8 +30,8 @@ const NavigationSidebar = ({
             className="rounded-full"
           />
         </div>
-        <div className="text-xs uppercase">Queenie’s</div>
-        <div className="text-xs uppercase ">Decor </div>
+        <div className={cn("text-xs uppercase", isScrolled ? 'text-black' : 'text-white')}>Queenie’s</div>
+        <div className={cn("text-xs uppercase ",isScrolled ? 'text-black' : 'text-white' )}>Decor </div>
       </div>
       <div className="flex-1 hidden md:flex">
         <NavigationInput />

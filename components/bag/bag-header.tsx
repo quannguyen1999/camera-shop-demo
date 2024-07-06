@@ -15,8 +15,8 @@ export const BagHeader = ({
       </div>
       <div>
         <div className="relative">
-          <ShoppingBag size={24} className="text-gray-600" />
-          <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-700 rounded-full">
+          <ShoppingBag size={24} className={cn(isScroll ? "text-gray-600" : "text-white")} />
+          <div className="absolute -top-1 -right-1 h-4 w-4 bg-black rounded-full">
             <p className="text-xs text-white ">6</p>
           </div>
         </div>
