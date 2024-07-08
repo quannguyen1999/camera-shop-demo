@@ -15,12 +15,6 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Dancing_Script } from "next/font/google";
 
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // specify the weights you need
-  display: "swap", // optional: controls the font-display value
-});
-
 const DashboardPage = () => {
   return (
     <div className={cn("flex flex-col gap-4 bg-gray-100", )}>

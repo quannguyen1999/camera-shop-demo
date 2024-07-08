@@ -18,7 +18,7 @@ const NavigationSidebar = ({
   return (
     <div className={cn("px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
       <div className="flex md:hidden items-center">
-        <MobileToggle />
+        <MobileToggle isScrolled={isScrolled}/>
       </div>
       <div className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer")}>
         <div className="flex flex-col justify-center items-center">
@@ -40,7 +40,7 @@ const NavigationSidebar = ({
         <NavigationToggle header={<BagHeader isScroll={isScrolled}/>} body={<BagBody />} colorTextHeader="text-black"/>
       </div>
       <div className="flex md:hidden flex-row gap-2 items-center">
-        <BadToggle />
+        <BadToggle isScrolled={isScrolled}/>
       </div>
       
     </div>

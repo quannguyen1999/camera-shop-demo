@@ -15,7 +15,7 @@ export const ProductItem = ({ imageUrl, name, price }: ProductItemProps) => {
           isScale={true}
           imageUrl="bg-[url('/images/dashboard_1.PNG')] "
           body={
-            <div className="flex hover:flex-row gap-2 items-center justify-center text-white">
+            <div className="w-full h-full bg-transparent opacity-0 hover:opacity-100 flex hover:flex-row gap-2 items-center justify-center text-white">
               <div className="relative">
                 <div className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all">
                   <Heart size={10} />

@@ -6,6 +6,7 @@ import { Accordion } from "./ui/accordion";
 import { AccordionToggle } from "./accordion-toggle";
 import { MenuHeader } from "./menu/menu-header";
 import { MenuItems } from "./menu/menu-items";
+import { cn } from "@/lib/utils";
 const listMenu = [
   {
     id: 1,
@@ -74,13 +75,17 @@ const listMenu = [
     ],
   },
 ];
-
-export const MobileToggle = () => {
+interface MobileToggleProps {
+  isScrolled: boolean
+}
+export const MobileToggle = ({
+  isScrolled
+}: MobileToggleProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu />
+          <Menu className={cn(isScrolled ? 'text-black' : 'text-white')}/>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0 flex gap-0 ">

@@ -17,7 +17,9 @@ export const ImageShadow = ({ imageUrl, body, isHover = false, isScale = false }
           isScale && 'hover:scale-110'
         )}
       >
-        <div className=" bg-black w-full h-full bg-opacity-30 gap-4 flex flex-col items-center justify-center">
+        <div className={cn(isHover ? 'hover:bg-black' : 'bg-white',
+        !isScale && 'bg-black',
+        " w-full transition-all duration-500 h-full bg-opacity-30 gap-4 flex flex-col items-center justify-center")}>
           {body}
         </div>
       </div>

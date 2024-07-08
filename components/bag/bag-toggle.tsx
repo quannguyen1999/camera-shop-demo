@@ -10,15 +10,22 @@ import {
 } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { BagBody } from "./bag-body";
+import { cn } from "@/lib/utils";
 
-export const BadToggle = () => {
+interface BadToggleProps {
+  isScrolled: boolean
+}
+
+export const BadToggle = ({
+  isScrolled
+}: BadToggleProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
         <div className="cursor-pointer">
           <div className="relative">
-            <ShoppingBag size={15} className="text-gray-500" />
-            <div className="absolute -top-1 -right-1 h-3 w-3 bg-green-700 rounded-full">
+            <ShoppingBag size={15} className={cn(isScrolled ? 'text-black' : "text-white")} />
+            <div className="absolute -top-1 -right-1 h-3 w-3 bg-black rounded-full">
               <p className="text-[8px] text-white ">6</p>
             </div>
           </div>

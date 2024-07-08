@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 800);
+      setIsScrolled(window.scrollY > 400);
     };
 
     window.addEventListener("scroll", handleScroll);
