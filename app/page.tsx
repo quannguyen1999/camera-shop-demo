@@ -26,7 +26,7 @@ const DashboardPage = () => {
   const { setIsMainPage } = useScrollStore();
   const pathName = usePathname();
   useEffect(() => {
-    if (pathName !== "/dashboard") {
+    if (pathName !== "/") {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);

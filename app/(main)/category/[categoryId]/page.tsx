@@ -26,7 +26,7 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
     }
   ]
   useEffect(() => {
-    if (pathName !== "/dashboard") {
+    if (pathName !== "/") {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);

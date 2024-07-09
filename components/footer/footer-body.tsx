@@ -4,7 +4,7 @@ import { Dancing_Script } from "next/font/google";
 import Image from "next/image";
 export const FooterBody = () => {
   return (
-    <div className="mt-5 gap-5 p-10 bg-yellow-800 text-white flex flex-col md:flex-row">
+    <div className="mt-5 gap-5 z-10 p-10 bg-yellow-800 text-white flex flex-col md:flex-row">
       <div className="rounded-full items-center justify-center flex">
         <Image
           src="/logo.svg"

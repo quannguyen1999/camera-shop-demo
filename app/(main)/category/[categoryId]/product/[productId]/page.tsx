@@ -34,7 +34,7 @@ export const ProductIdPage = ({ params }: ProductIdPageProps) => {
     },
   ];
   useEffect(() => {
-    if (pathName !== "/dashboard") {
+    if (pathName !== "/") {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);

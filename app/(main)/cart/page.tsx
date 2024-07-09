@@ -12,7 +12,7 @@ export const CartPage = () => {
   const pathName = usePathname();
 
   useEffect(() => {
-    if (pathName !== "/dashboard") {
+    if (pathName !== "/") {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);

@@ -8,6 +8,7 @@ import { BagBody } from "../bag/bag-body";
 import { Dancing_Script } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { User } from "lucide-react";
 
 interface NavigationSidebarProps {
   isScrolled: boolean
@@ -18,7 +19,10 @@ const NavigationSidebar = ({
 }: NavigationSidebarProps) => {
   const router = useRouter()
   const navigateToMainPage = () => {
-    router.push("/dashboard");
+    router.push("/");
+  }
+  const navigateToAdminPage = () => {
+    router.push("/admin");
   }
   return (
     <div className={cn("px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
@@ -47,7 +51,9 @@ const NavigationSidebar = ({
       <div className="flex  md:hidden flex-row gap-2 items-center">
         <BadToggle isScrolled={isScrolled}/>
       </div>
-      
+      <div className="flex items-center">
+        <User size={20} className={cn("cursor-pointer", isScrolled ? 'text-black' : 'text-white')} onClick={()=>navigateToAdminPage()}/>
+      </div>
     </div>
   );
 };
