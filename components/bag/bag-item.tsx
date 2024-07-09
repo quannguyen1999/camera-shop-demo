@@ -23,7 +23,7 @@ export const BadItem = ({
       <div>
         <Image height={40} width={40} src={url} alt="logo" />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-1 flex-col gap-2">
         <h1>{nameProduct}</h1>
         <span className="text-xs">{detailSize}</span>
         <p className="text-xs">

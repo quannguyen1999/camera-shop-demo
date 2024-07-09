@@ -78,7 +78,7 @@ const SideBarHeader = ({
     isScrolled
 }: NavigationSidebarProps) => {
   return (
-    <div className={cn("hidden h-14 w-full px-8 text-white md:grid md:grid-cols-2 ", isScrolled ? 'bg-white shadow-2xl text-black hover:text-black' : '')}>
+    <div className={cn("hidden  h-14 w-full px-8 text-white md:grid md:grid-cols-2 ", isScrolled ? 'bg-white shadow-2xl text-black hover:text-black' : '')}>
       <div className="flex flex-row gap-5 text-sm">
         {listMenu.map((t) => (
           <MenuBody
