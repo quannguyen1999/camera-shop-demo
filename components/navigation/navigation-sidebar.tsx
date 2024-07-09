@@ -39,7 +39,7 @@ const NavigationSidebar = ({
       <div className="hidden md:flex flex-row gap-2 items-center">
         <NavigationToggle header={<BagHeader isScroll={isScrolled}/>} body={<BagBody />} colorTextHeader="text-black"/>
       </div>
-      <div className="flex md:hidden flex-row gap-2 items-center">
+      <div className="flex  md:hidden flex-row gap-2 items-center">
         <BadToggle isScrolled={isScrolled}/>
       </div>
       
