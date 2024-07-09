@@ -1,3 +1,4 @@
+'use client'
 import { CategoryShadow } from "./category-shadow";
 
 const dataCategoryFake = [

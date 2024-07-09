@@ -1,3 +1,4 @@
+'use client'
 import { InfScroll } from "@/components/InfScroll";
 import { CarouselToggle } from "@/components/carousel-toggle";
 import { CategoryBody } from "@/components/category/category-body";
@@ -15,10 +16,22 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
+import { useScrollStore } from "@/hook/use-scroll-store";
 import { cn } from "@/lib/utils";
 import { Dancing_Script } from "next/font/google";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const DashboardPage = () => {
+  const { setIsMainPage } = useScrollStore();
+  const pathName = usePathname();
+  useEffect(() => {
+    if (pathName !== "/dashboard") {
+      setIsMainPage(false);
+    } else {
+      setIsMainPage(true);
+    }
+  }, [pathName]);
   return (
     <div className={cn("flex flex-col gap-4 bg-gray-100")}>
       <DashboardCarousel />

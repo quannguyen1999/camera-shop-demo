@@ -7,6 +7,7 @@ import { BagHeader } from "../bag/bag-header";
 import { BagBody } from "../bag/bag-body";
 import { Dancing_Script } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface NavigationSidebarProps {
   isScrolled: boolean
@@ -15,12 +16,16 @@ interface NavigationSidebarProps {
 const NavigationSidebar = ({
   isScrolled
 }: NavigationSidebarProps) => {
+  const router = useRouter()
+  const navigateToMainPage = () => {
+    router.push("/dashboard");
+  }
   return (
     <div className={cn("px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
       <div className="flex md:hidden items-center">
         <MobileToggle isScrolled={isScrolled}/>
       </div>
-      <div className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer")}>
+      <div onClick={() => navigateToMainPage()} className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer")}>
         <div className="flex flex-col justify-center items-center">
           <Image
             src="/logo.svg"
