@@ -45,7 +45,7 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
       </div>
       <div className="flex-1 flex flex-row">
         <div className="">
-          {/* <CategorySection /> */}
+          <CategorySection />
         </div>
 
         <div className="flex-1 pt-12">
