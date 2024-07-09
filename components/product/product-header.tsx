@@ -7,18 +7,22 @@ const dataBreadCum = [
     value: "Trang chủ",
     url: "/dashboard",
   },
+  {
+    value: "Mặt Hàng",
+    url: "/xnxx",
+  }
 ];
 
-interface CategoryItem {
+interface ProductItem {
   value: string;
   url: string;
 }
-interface CatgegoryHeaderPageProps {
-  category: CategoryItem[];
+interface ProductHeaderPageProps {
+  product: ProductItem[];
 }
-export const CategoryHeader = ({ category }: CatgegoryHeaderPageProps) => {
+export const ProductHeader = ({ product }: ProductHeaderPageProps) => {
   useEffect(() => {
-    category.forEach( t =>{
+    product.forEach( t =>{
       const exists = dataBreadCum.some((item) => item.value === t.value);
       if(!exists){
         dataBreadCum.push({

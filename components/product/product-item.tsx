@@ -1,6 +1,8 @@
+'use client'
 import { ArrowRight, Heart, LucideMove, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import { ImageShadow } from "../image/image-shadow";
+import { useRouter } from "next/navigation";
 
 interface ProductItemProps {
   imageUrl: string;
@@ -8,8 +10,12 @@ interface ProductItemProps {
   price: number;
 }
 export const ProductItem = ({ imageUrl, name, price }: ProductItemProps) => {
+  const router = useRouter();
+  const redirectToDetailProduct = () => {
+    router.push(`/category/xx/product/ss`)
+  }
   return (
-    <div className="rounded-md flex flex-col h-80 text-center gap-4 bg-gray-200 hover:bg-gray-300 duration-75 transition-all p-3 cursor-pointer">
+    <div onClick={() => redirectToDetailProduct()} className="rounded-md flex flex-col h-80 text-center gap-4 bg-gray-200 hover:bg-gray-300 duration-75 transition-all p-3 cursor-pointer">
       <div className="flex-1">
         <ImageShadow
           isScale={true}

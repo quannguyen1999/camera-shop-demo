@@ -15,19 +15,28 @@ interface CatgegoryHeaderPageProps {
 export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
   const { setIsMainPage } = useScrollStore();
   const pathName = usePathname();
+  const values = [
+    {
+      value: 'Trang chủ', 
+      url: '/dashboard'
+    },
+    {
+      value: 'Mặt Hàng', 
+      url: '/category/'+params.categoryId
+    }
+  ]
   useEffect(() => {
     if (pathName !== "/dashboard") {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);
     }
-    console.log("call")
   }, [pathName]);
   return (
     <div className="flex flex-col px-20 pt-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 row-span-3  pt-40">
         <div className="justify-start flex flex-row gap-2">
-          <CategoryHeader value={params.categoryId} />
+          <CategoryHeader category={values} />
         </div>
         <div className="items-center justify-start md:justify-end flex flex-row gap-2">
           <p>Hiển thị tất cả</p>
@@ -35,8 +44,8 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
         </div>
       </div>
       <div className="flex-1 flex flex-row">
-        <div className="flex-col hidden md:flex">
-          <CategorySection />
+        <div className="">
+          {/* <CategorySection /> */}
         </div>
 
         <div className="flex-1 pt-12">

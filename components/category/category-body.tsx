@@ -1,67 +1,74 @@
 'use client'
+import { Dancing_Script } from "next/font/google";
 import { CategoryShadow } from "./category-shadow";
+import { cn } from "@/lib/utils";
 
 const dataCategoryFake = [
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "BÌNH HOA",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "TRÁI CÂY GIẢ",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "BÁNH GIẢ, KEM GIẢ",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "ĐÁ GIẢ",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "HOA LÁ GIẢ",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "CHIM BƯỚM",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "THIỆP",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "CHỮ, SỐ",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "KHỐI HÌNH HỌC",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "VÃI NỀN",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "TRÀ ĐẠO",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "LY CHEN ĐĨA",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "MUỖNG NĨA DAO",
   },
   {
     imageUrl:"/images/dashboard_1.PNG",
-    content: "XX",
+    content: "KHAY, NHỚT",
   },
 ];
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // specify the weights you need
+  display: "swap", // optional: controls the font-display value
+});
 export const CategoryBody = () => {
   return (
-    <div className="grid grid-cols-2  md:grid-cols-5 gap-2  row-span-3 px-2 md:px-20">
+    <div className={cn(dancingScript.className, "grid grid-cols-2  md:grid-cols-5 gap-2  row-span-3 px-2 md:px-20")}>
       {dataCategoryFake.map((t, index) => (
         <CategoryShadow
           key={index}
