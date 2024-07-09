@@ -42,12 +42,12 @@ export const ProductIdPage = ({ params }: ProductIdPageProps) => {
   }, [pathName]);
   return (
     <div className="flex flex-col px-40 pt-12 gap-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 row-span-3  pt-40">
+      <div className=" gap-2 row-span-3  pt-40">
         <div className="justify-start flex flex-row gap-2">
           <CategoryHeader category={values} />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="col-span-1">
           <CarouselProduct />
         </div>

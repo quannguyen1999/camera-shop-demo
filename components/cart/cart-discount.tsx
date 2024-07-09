@@ -16,7 +16,7 @@ export const CartDiscount = () => {
           </p>
         }
         menuBody={
-          <div className=" flex flex-col border  ">
+          <div className=" flex flex-col  ">
             <div className="flex flex-row gap-5 ">
               <Input placeholder="Mã ưu đãi" className="pl-5 focus-visible:ring-0 focus-visible:ring-offset-0" />
               <Button className="bg-amber-700">ÁP DỤNG</Button>

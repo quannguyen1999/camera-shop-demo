@@ -68,7 +68,7 @@ const dancingScript = Dancing_Script({
 });
 export const CategoryBody = () => {
   return (
-    <div className={cn(dancingScript.className, "grid grid-cols-2  md:grid-cols-5 gap-2  row-span-3 px-2 md:px-20")}>
+    <div className={cn(dancingScript.className, "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2  row-span-3 px-2 md:px-20")}>
       {dataCategoryFake.map((t, index) => (
         <CategoryShadow
           key={index}

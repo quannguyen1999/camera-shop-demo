@@ -31,7 +31,7 @@ export const ProductDetail = () => {
         <p className="">Mức giá (Tùy theo phân loại): <span>38 000 đ</span></p>
        
       </div>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
         <div className="grid-cols-1 flex flex-row gap-2">
           <div className="bg-gray-300 hover:bg-gray-400 transition-all w-full flex items-center justify-center cursor-pointer">
             <p className="text-2xl">-</p>

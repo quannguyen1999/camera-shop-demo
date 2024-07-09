@@ -78,8 +78,8 @@ const SideBarHeader = ({
     isScrolled
 }: NavigationSidebarProps) => {
   return (
-    <div className={cn("hidden  h-14 w-full px-8 text-white md:grid md:grid-cols-2 ", isScrolled ? 'bg-white shadow-2xl text-black hover:text-black' : '')}>
-      <div className="flex flex-row gap-5 text-sm">
+    <div className={cn("hidden gap-1  h-24 w-full px-8  text-white md:grid sm:grid-cols-1 md:grid-cols-1 lg:grid-col-1 xl:grid-cols-2", isScrolled ? 'bg-gray-50 shadow-2xl text-black hover:text-black' : '')}>
+      <div className="flex flex-row gap-5 text-sm md:justify-center lg:justify-center  xl:justify-start ">
         {listMenu.map((t) => (
           <MenuBody
             key={t.id}
@@ -93,7 +93,7 @@ const SideBarHeader = ({
         </div>
       </div>
 
-      <div className="flex flex-row text-xs gap-5 justify-end ">
+      <div className="flex flex-row text-xs gap-5 md:justify-center lg:justify-center  xl:justify-end ">
         <div className="flex flex-row items-center justify-center gap-1">
           <div>
             <MapPin size={15} />

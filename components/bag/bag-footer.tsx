@@ -1,6 +1,12 @@
+'use client'
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
 export const BagFooter = () => {
+  const router = useRouter();
+  const redirectToPageCart = () => {
+    router.push('/cart');
+  }
   return (
     <>
       <div>
@@ -9,7 +15,7 @@ export const BagFooter = () => {
         </Button>
       </div>
       <div>
-        <Button className="w-full text-xs" variant="outline">
+        <Button onClick={() => redirectToPageCart()} className="w-full text-xs" variant="outline">
           THANH TOÁN
         </Button>
       </div>

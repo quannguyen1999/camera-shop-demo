@@ -27,7 +27,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className={cn("fixed z-10 w-full h-24 top-0 left-0 bg-transparent")}>
+      <div className={cn("fixed z-10 w-full h-24 top-0 left-0 bg-transparent", isScrolled && 'shadow-xl')}>
         <NavigationSidebar isScrolled={!isInMainPage ? true : isScrolled}/>
         <SideBarHeader isScrolled={!isInMainPage ? true : isScrolled}/>
       </div>

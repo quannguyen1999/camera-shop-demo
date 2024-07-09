@@ -25,7 +25,7 @@ const CarouselProduct: React.FC = () => {
           }
         }}
       >
-        <div className="bg-red-500 w-full h-full">
+        <div className="w-full h-full">
           <Image
             className="w-full h-full"
             height={300}
@@ -34,7 +34,7 @@ const CarouselProduct: React.FC = () => {
             src="/images/dashboard_1.png"
           />
         </div>
-        <div className="bg-red-500 w-full h-full">
+        <div className=" w-full h-full">
           <Image
             className="w-full h-full"
             height={300}
@@ -43,7 +43,7 @@ const CarouselProduct: React.FC = () => {
             src="/images/dashboard_2.png"
           />
         </div>
-        <div className="bg-red-500 w-full h-full">
+        <div className="w-full h-full">
           <Image
             className="w-full h-full"
             height={300}
