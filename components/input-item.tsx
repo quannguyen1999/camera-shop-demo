@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { LoadingItem } from "./loading-item";
 
@@ -22,6 +22,11 @@ export const InputItem = ({
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(content);
   const [error, setError] = useState(false);
+
+  useEffect(()=>{
+      setValue(content)
+  }, [content])
+
   const onChangeValue = (value: any) => {
     setValue(value.target.value);
     onSetValue(value.target.value);

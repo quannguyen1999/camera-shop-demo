@@ -77,7 +77,7 @@ export const columns: ColumnDef<Category>[] = [
               <MoreHorizontal className="" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-red-500">
+          <DropdownMenuContent align="end">
             <DropdownMenuItem className="cursor-pointer"> Xóa </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer" onClick={() => onOpen("editCategory",row.original.id)}> Sửa </DropdownMenuItem>
           </DropdownMenuContent>

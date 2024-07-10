@@ -26,7 +26,7 @@ export const CategoryPage = () => {
           <p>Quản lý mặt hàng</p>
         </div>
         <div className="flex-1 items-end justify-end flex">
-          <Button onClick={() => onOpen("addCategory")}>Thêm Mặt Hàng</Button>
+          <Button onClick={() => onOpen("addCategory", "")}>Thêm Mặt Hàng</Button>
         </div>
       </div>
       <DemoPage />

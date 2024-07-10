@@ -15,6 +15,7 @@ export default function DemoPage() {
   const { isRefresh } = useModal();
 
   useEffect(() => {
+    console.log("hehe")
     const getData = async () => {
       const datas = await axios.get(urlApi);
       setDataTable(datas.data.items);

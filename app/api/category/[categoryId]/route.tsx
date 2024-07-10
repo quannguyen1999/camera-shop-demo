@@ -20,7 +20,39 @@ export async function GET(
     });
 
     return NextResponse.json({
-        categories
+      categories,
+    });
+  } catch (error) {
+    console.log("[MESSAGE_GET]", error);
+    return new NextResponse("internal server error", { status: 500 });
+  }
+}
+
+export async function PATCH(
+  req: Request,
+  { params }: { params: { categoryId: string } }
+) {
+  try {
+    const profile = await currentProfile();
+    const { menuParent, menuChild, urlImage } = await req.json();
+
+    if (!profile) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const categoryUpdate = await db.category.update({
+      where: {
+        id: params.categoryId,
+      },
+      data: {
+        imageUrl: urlImage,
+        contentMenuParent: menuParent,
+        contentMenuChild: menuChild,
+      },
+    });
+
+    return NextResponse.json({
+      categoryUpdate,
     });
   } catch (error) {
     console.log("[MESSAGE_GET]", error);

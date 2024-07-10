@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import qs from "query-string";
 import { Button } from "@/components/ui/button";
 import { useModal } from "./use-modal-store";
@@ -18,6 +18,10 @@ import { toast } from "sonner";
 import { LoadingItem } from "@/components/loading-item";
 
 export const AddCategoryModal = () => {
+  const apiUrl = "/api/category/";
+  const ADD_CONSTANT = "addCategory";
+  const EDIT_CONSTANT = "editCategory";
+  
   const [loading, setLoading] = useState(false);
 
   const [menuParent, setMenuParent] = useState("");
@@ -27,15 +31,19 @@ export const AddCategoryModal = () => {
   const { isOpen, onClose, type, setIsRefresh, id, setId } = useModal();
 
   const isModalOpen =
-    isOpen && (type === "addCategory" || type === "editCategory");
+    isOpen && (type === ADD_CONSTANT || type === EDIT_CONSTANT);
+
+  const clearData = () => {
+    setMenuParent("");
+    setMenuChild("");
+    setUrlImage("");
+  };
 
   useEffect(() => {
-    console.log(id);
-    console.log(type);
-
-    const getCategoryById = async () => {
+    const getById = async () => {
+      //Common
       let data = await axios
-        .get(`/api/category/${id}`)
+        .get(`${apiUrl}${id}`)
         .catch((error) => {
           toast.error("Có lỗi xảy ra");
         })
@@ -44,25 +52,26 @@ export const AddCategoryModal = () => {
         });
 
       if (data != null) {
-        console.log("fuck this " + data.data.categories.contentMenuParent);
         setMenuParent(data.data.categories.contentMenuParent);
         setMenuChild(data.data.categories.contentMenuChild);
-
-        console.log(data.data.categories.imageUrl)
         setUrlImage(data.data.categories.imageUrl);
       }
     };
 
-    if (type === "editCategory") {
-      getCategoryById();
+    if (type === EDIT_CONSTANT) {
+      getById();
     }
-
-    if (type === "addCategory") {
-      setMenuParent("");
-      setMenuChild("");
-      setUrlImage("");
+    if (type === ADD_CONSTANT) {
+      clearData();
     }
   }, [id, type]);
+
+  //syncn data
+  useEffect(() => {
+    setMenuParent(menuParent);
+    setMenuChild(menuChild);
+    setUrlImage(urlImage);
+  }, [menuParent, menuChild, urlImage]);
 
   const handleClose = () => {
     onClose();
@@ -70,6 +79,24 @@ export const AddCategoryModal = () => {
   };
 
   const onSubmit = async () => {
+    validateForm();
+    triggerApi(
+      type === ADD_CONSTANT
+        ? axios.post(apiUrl, {
+            menuParent,
+            menuChild,
+            urlImage,
+          })
+        : axios.patch(`${apiUrl}${id}`, {
+            menuParent,
+            menuChild,
+            urlImage,
+          }),
+      type == ADD_CONSTANT ? 'Thêm thành công' :"Cập Nhập Thành Công"
+    );
+  };
+
+  const validateForm = () => {
     if (
       !isValid(menuParent) ||
       !isValid(menuChild)
@@ -78,29 +105,24 @@ export const AddCategoryModal = () => {
       toast.error("Vui lòng nhập đầy đủ thông tin");
       return;
     }
+  };
 
-    if (type == "addCategory") {
-      setLoading(true);
-      await axios
-        .post("/api/category", {
-          menuParent,
-          menuChild,
-          urlImage,
-        })
-        .catch((error) => {
-          toast.error("Có lỗi xảy ra");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-      setIsRefresh(true);
-      toast.success("Thêm thành công");
-      setIsRefresh(false);
+  const triggerApi = async (
+    request: Promise<AxiosResponse<any>>,
+    messageSuccess: string
+  ) => {
+    setLoading(true);
+    await request
+      .catch((error) => {
+        toast.error("Có lỗi xảy ra");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
-      setMenuParent("");
-      setMenuChild("");
-      setUrlImage("");
-    }
+    setIsRefresh(true);
+    toast.success(messageSuccess);
+    setTimeout(() => setIsRefresh(false), 1000);
   };
 
   const isValid = (value: string) => {
@@ -123,8 +145,6 @@ export const AddCategoryModal = () => {
             {type == "addCategory" ? "Thêm Mặt Hàng" : "Sữa Mặt Hàng"}
           </DialogTitle>
           <div className="flex flex-col p-4 gap-3">
-            {menuParent}
-            {menuChild}
             <InputItem
               onSetValue={(value: any) => setMenuParent(value)}
               content={menuParent}
@@ -165,7 +185,7 @@ export const AddCategoryModal = () => {
           >
             {loading ? (
               <LoadingItem />
-            ) : type == "addCategory" ? (
+            ) : type == ADD_CONSTANT ? (
               "Thêm"
             ) : (
               "Cập nhập"
