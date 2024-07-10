@@ -1,0 +1,66 @@
+import { useState } from "react";
+import { Input } from "./ui/input";
+import { LoadingItem } from "./loading-item";
+
+interface InputItemProps {
+  label: string;
+  placeHolder: string;
+  isMandatory: boolean;
+  regex: string;
+}
+
+export const InputItem = ({
+  label,
+  placeHolder,
+  isMandatory,
+  regex = "",
+}: InputItemProps) => {
+  const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
+  const onChangeValue = (value: any) => {
+    setValue(value.target.value);
+  };
+
+  const onCheckValue = () => {
+    if (!isMandatory) {
+      return;
+    }
+
+
+    setLoading(true);
+    if (value == undefined || value == null || value.trim().length <= 0) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+    setLoading(false);
+  };
+  return (
+    <div className="flex flex-col gap-2">
+      <p>
+        {label}{" "}
+        {error && (
+          <span className="text-xs font-bold text-red-600">
+            ( Vui lòng Nhập )
+          </span>
+        )}{" "}
+      </p>
+      <div className="relative">
+        <div>
+        <Input
+          onBlur={() => onCheckValue()}
+          onChange={(value) => onChangeValue(value)}
+          value={value}
+          placeholder={placeHolder}
+          className="focus-visible:ring-0 focus-visible:ring-offset-0"
+        />
+        </div>
+       
+        <div className="absolute -top-3 right-2">
+            {loading && <LoadingItem /> }
+        </div>
+      </div>
+    </div>
+  );
+};

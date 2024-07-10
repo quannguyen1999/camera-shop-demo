@@ -1,10 +1,13 @@
 'use client'
 import { useScrollStore } from "@/hook/use-scroll-store";
+import { initialProfile } from "@/lib/initial-profile";
 import { Smile } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-export const AdminPage = () => {
+export const AdminPage = async () => {
+    await initialProfile();
+    
     const { setIsAdminPage, setIsMainPage } = useScrollStore();
     const pathName = usePathname();
   

@@ -1,5 +1,4 @@
-import { Input } from "../ui/input";
-import { CartInput } from "./cart-input";
+import { InputItem } from "../input-item";
 
 export const CartForm = () => {
   return (
@@ -7,14 +6,14 @@ export const CartForm = () => {
       <p className="font-bold text-amber-700 text-2xl uppercase">
         thông tin thanh toán
       </p>
-      <CartInput />
+      <InputItem />
       <div className="flex flex-row gap-5" >
-        <CartInput />
-        <CartInput />
+        <InputItem />
+        <InputItem />
       </div>
-      <CartInput />
-      <CartInput />
-      <CartInput />
+      <InputItem />
+      <InputItem />
+      <InputItem />
     </div>
   );
 };
