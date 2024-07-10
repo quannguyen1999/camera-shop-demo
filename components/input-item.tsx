@@ -7,6 +7,7 @@ interface InputItemProps {
   placeHolder: string;
   isMandatory: boolean;
   regex: string;
+  onSetValue: (value?: string) => void;
 }
 
 export const InputItem = ({
@@ -14,12 +15,14 @@ export const InputItem = ({
   placeHolder,
   isMandatory,
   regex = "",
+  onSetValue
 }: InputItemProps) => {
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const onChangeValue = (value: any) => {
     setValue(value.target.value);
+    onSetValue(value.target.value);
   };
 
   const onCheckValue = () => {

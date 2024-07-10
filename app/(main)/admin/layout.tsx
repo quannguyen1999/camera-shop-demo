@@ -5,7 +5,7 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <AddCategoryModal />
-      <div className="flex flex-row h-full w-full  mt-48">
+      <div className="flex flex-row h-full w-full">
         <MenuSection />
         <div className="flex-1">{children}</div>
       </div>
