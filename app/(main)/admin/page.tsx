@@ -5,15 +5,12 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export const AdminPage = () => {
-    const { setIsMainPage } = useScrollStore();
+    const { setIsAdminPage, setIsMainPage } = useScrollStore();
     const pathName = usePathname();
   
     useEffect(() => {
-      if (pathName !== "/") {
-        setIsMainPage(false);
-      } else {
-        setIsMainPage(true);
-      }
+      setIsAdminPage(true);
+      setIsMainPage(false);
     }, [pathName]);
 
     return <div className="font-bold text-2xl bg-transparent w-full uppercase h-full justify-center items-center flex">

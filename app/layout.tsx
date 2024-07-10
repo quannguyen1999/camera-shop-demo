@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isInMainPage } = useScrollStore();
+  const { isInMainPage, isAdminPage } = useScrollStore();
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 400);
@@ -56,7 +56,7 @@ export default function RootLayout({
               <SideBarHeader isScrolled={!isInMainPage ? true : isScrolled} />
             </div>
             <div className="flex-1">{children}</div>
-            <FooterBody />
+            {!isAdminPage && <FooterBody />}
           </div>
         </body>
       </html>
