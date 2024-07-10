@@ -79,9 +79,6 @@ export async function GET(req: Request) {
     if (categories.length === MESSAGE_BATCH) {
       nextCursorOutput = categories[MESSAGE_BATCH - 1].id;
     }
-
-    console.log("Ss")
-    console.log(categories.length)
     
     if (categories.length > 0) {
         

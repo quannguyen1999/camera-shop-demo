@@ -6,10 +6,11 @@ import Image from "next/image";
 interface UploadItemProps {
   label: string;
   onSetValue: (value?: string) => void;
+  urlImage: string;
 }
 
-export const UploadItem = ({ label, onSetValue }: UploadItemProps) => {
-  const [url, setUrl] = useState("");
+export const UploadItem = ({ label, onSetValue, urlImage }: UploadItemProps) => {
+  const [url, setUrl] = useState(urlImage);
   const onChange = (url: string) => {
     setUrl(url);
     onSetValue(url);

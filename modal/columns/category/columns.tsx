@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useModal } from "@/modal/popup/use-modal-store";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
@@ -67,6 +68,7 @@ export const columns: ColumnDef<Category>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      const {onOpen} = useModal();
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -77,6 +79,7 @@ export const columns: ColumnDef<Category>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-red-500">
             <DropdownMenuItem className="cursor-pointer"> Xóa </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer" onClick={() => onOpen("editCategory",row.original.id)}> Sửa </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

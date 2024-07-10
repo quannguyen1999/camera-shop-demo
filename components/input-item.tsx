@@ -7,6 +7,7 @@ interface InputItemProps {
   placeHolder: string;
   isMandatory: boolean;
   regex: string;
+  content: string;
   onSetValue: (value?: string) => void;
 }
 
@@ -15,10 +16,11 @@ export const InputItem = ({
   placeHolder,
   isMandatory,
   regex = "",
+  content,
   onSetValue
 }: InputItemProps) => {
   const [loading, setLoading] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(content);
   const [error, setError] = useState(false);
   const onChangeValue = (value: any) => {
     setValue(value.target.value);
@@ -42,7 +44,7 @@ export const InputItem = ({
   return (
     <div className="flex flex-col gap-2">
       <p>
-        {label}{" "}
+        {label} 
         {error && (
           <span className="text-xs font-bold text-red-600">
             ( Vui lòng Nhập )

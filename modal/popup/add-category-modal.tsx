@@ -24,12 +24,49 @@ export const AddCategoryModal = () => {
   const [menuChild, setMenuChild] = useState("");
   const [urlImage, setUrlImage] = useState("");
 
-  const { isOpen, onClose, type } = useModal();
+  const { isOpen, onClose, type, setIsRefresh, id, setId } = useModal();
 
-  const isModalOpen = isOpen && type === "addCategory";
+  const isModalOpen =
+    isOpen && (type === "addCategory" || type === "editCategory");
+
+  useEffect(() => {
+    console.log(id);
+    console.log(type);
+
+    const getCategoryById = async () => {
+      let data = await axios
+        .get(`/api/category/${id}`)
+        .catch((error) => {
+          toast.error("Có lỗi xảy ra");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+
+      if (data != null) {
+        console.log("fuck this " + data.data.categories.contentMenuParent);
+        setMenuParent(data.data.categories.contentMenuParent);
+        setMenuChild(data.data.categories.contentMenuChild);
+
+        console.log(data.data.categories.imageUrl)
+        setUrlImage(data.data.categories.imageUrl);
+      }
+    };
+
+    if (type === "editCategory") {
+      getCategoryById();
+    }
+
+    if (type === "addCategory") {
+      setMenuParent("");
+      setMenuChild("");
+      setUrlImage("");
+    }
+  }, [id, type]);
 
   const handleClose = () => {
     onClose();
+    setId("");
   };
 
   const onSubmit = async () => {
@@ -42,28 +79,28 @@ export const AddCategoryModal = () => {
       return;
     }
 
-    //   const url = qs.stringifyUrl({
-    //     url: "/api/category",
-    //     query: {
-    //         serverId: params?.serverId
-    //     }
-    // })
+    if (type == "addCategory") {
+      setLoading(true);
+      await axios
+        .post("/api/category", {
+          menuParent,
+          menuChild,
+          urlImage,
+        })
+        .catch((error) => {
+          toast.error("Có lỗi xảy ra");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+      setIsRefresh(true);
+      toast.success("Thêm thành công");
+      setIsRefresh(false);
 
-    setLoading(true);
-    await axios
-      .post("/api/category", {
-        menuParent,
-        menuChild,
-        urlImage,
-      })
-      .catch((error) => {
-        toast.error("Có lỗi xảy ra");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-
-    toast.success("Thêm thành công");
+      setMenuParent("");
+      setMenuChild("");
+      setUrlImage("");
+    }
   };
 
   const isValid = (value: string) => {
@@ -83,11 +120,14 @@ export const AddCategoryModal = () => {
       >
         <DialogHeader className="pt-5 px-6">
           <DialogTitle className="text-base text-center dark:text-white">
-            Thêm Mặt Hàng
+            {type == "addCategory" ? "Thêm Mặt Hàng" : "Sữa Mặt Hàng"}
           </DialogTitle>
           <div className="flex flex-col p-4 gap-3">
+            {menuParent}
+            {menuChild}
             <InputItem
               onSetValue={(value: any) => setMenuParent(value)}
+              content={menuParent}
               isMandatory
               regex=""
               placeHolder="Vui lòng nhập danh mục cha..."
@@ -95,12 +135,14 @@ export const AddCategoryModal = () => {
             />
             <InputItem
               onSetValue={(value: any) => setMenuChild(value)}
+              content={menuChild}
               isMandatory
               regex=""
               placeHolder="Vui lòng nhập danh mục con..."
               label="Danh mục con *"
             />
             <UploadItem
+              urlImage={urlImage}
               onSetValue={(value: any) => setUrlImage(value)}
               label="Hình Mặt Hàng"
             />
@@ -121,7 +163,13 @@ export const AddCategoryModal = () => {
             className="bg-gray-400 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700"
             disabled={loading}
           >
-            {loading ? <LoadingItem /> : "Thêm"}
+            {loading ? (
+              <LoadingItem />
+            ) : type == "addCategory" ? (
+              "Thêm"
+            ) : (
+              "Cập nhập"
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>
