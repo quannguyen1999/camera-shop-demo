@@ -10,6 +10,7 @@ import { ImageOff, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { error } from "console";
+import { formatISOStringToDate } from "@/util/function-util";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -26,6 +27,7 @@ export const columns: ColumnDef<Category>[] = [
   {
     accessorKey: "id",
     header: "id",
+    
   },
   {
     accessorKey: "contentMenuChild",
@@ -38,6 +40,11 @@ export const columns: ColumnDef<Category>[] = [
   {
     accessorKey: "createdAt",
     header: "Ngày tạo",
+    cell: ({ row }) => {
+      return <p>
+        {formatISOStringToDate(row.original.createdAt)}
+      </p>
+    }
   },
   {
     accessorKey: "imageUrl",
@@ -67,6 +74,11 @@ export const columns: ColumnDef<Category>[] = [
   {
     accessorKey: "updatedAt",
     header: "Ngày cập nhập",
+    cell: ({ row }) => {
+      return <p>
+        {formatISOStringToDate(row.original.updatedAt)}
+      </p>
+    }
   },
   {
     id: "actionsDelete",

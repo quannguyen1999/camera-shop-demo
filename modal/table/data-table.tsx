@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="p-4">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-2">
         <Input
           placeholder="Filter emails..."
           value={table.getColumn("id")?.getFilterValue() as string}
@@ -64,7 +64,7 @@ export function DataTable<TData, TValue>({
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto focus-visible:ring-0 focus-visible:ring-offset-0">
               Columns
             </Button>
           </DropdownMenuTrigger>
