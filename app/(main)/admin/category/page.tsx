@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useScrollStore } from "@/hook/use-scroll-store";
-import DemoPage from "@/modal/columns/category/table-page";
+import CategoryTablePage from "@/modal/table/category/table-page";
 import { useModal } from "@/modal/popup/use-modal-store";
 import { Info } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -26,10 +26,12 @@ export const CategoryPage = () => {
           <p>Quản lý mặt hàng</p>
         </div>
         <div className="flex-1 items-end justify-end flex">
-          <Button onClick={() => onOpen("addCategory", "")}>Thêm Mặt Hàng</Button>
+          <Button onClick={() => onOpen("addCategory", "")}>
+            Thêm Mặt Hàng
+          </Button>
         </div>
       </div>
-      <DemoPage />
+      <CategoryTablePage />
     </div>
   );
 };

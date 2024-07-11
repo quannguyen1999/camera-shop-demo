@@ -1,6 +1,6 @@
 'use client'
 import { useScrollStore } from "@/hook/use-scroll-store";
-import DemoPage from "@/modal/columns/category/table-page"
+import DemoPage from "@/modal/table/category/table-page"
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 

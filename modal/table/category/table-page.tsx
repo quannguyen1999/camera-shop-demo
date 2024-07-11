@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Category, columns } from "./columns";
-import { DataTable } from "./data-table";
+import { DataTable } from "../data-table";
 import axios from "axios";
 import { LoadingItem } from "@/components/loading-item";
 import qs from "query-string";
 import { useModal } from "@/modal/popup/use-modal-store";
-export default function DemoPage() {
+export default function CategoryTablePage() {
   const urlApi = "/api/category";
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [dataTable, setDataTable] = useState([]);
   const [nextCursor, setNextCursor] = useState("");
   const [firstCursor, setFirstCursor] = useState("");
@@ -15,7 +15,6 @@ export default function DemoPage() {
   const { isRefresh } = useModal();
 
   useEffect(() => {
-    console.log("hehe")
     const getData = async () => {
       const datas = await axios.get(urlApi);
       setDataTable(datas.data.items);
