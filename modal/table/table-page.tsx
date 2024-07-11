@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Category, columns } from "./columns";
-import { DataTable } from "../data-table";
+import { Category, columns } from "./category/columns";
+import { DataTable } from "./data-table";
 import axios from "axios";
 import { LoadingItem } from "@/components/loading-item";
 import qs from "query-string";
 import { useModal } from "@/modal/popup/use-modal-store";
-export default function CategoryTablePage() {
-  const urlApi = "/api/category";
+interface CategoryTablePageProps {
+  urlApi: string
+}
+export default function CategoryTablePage({urlApi}: CategoryTablePageProps) {
+
   const { isRefresh } = useModal();
   const [loading, setLoading] = useState(isRefresh);
   const [dataTable, setDataTable] = useState([]);

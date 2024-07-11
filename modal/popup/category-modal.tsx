@@ -25,6 +25,7 @@ export const AddCategoryModal = () => {
   const EDIT_CONSTANT = "editCategory";
 
   const [loading, setLoading] = useState(false);
+  
 
   const [menuParent, setMenuParent] = useState("");
   const [menuChild, setMenuChild] = useState("");
@@ -61,7 +62,9 @@ export const AddCategoryModal = () => {
     };
 
     if (type === EDIT_CONSTANT) {
+      setLoading(true);
       getById();
+      setLoading(true);
     }
     if (type === ADD_CONSTANT) {
       clearData();

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import CategoryTablePage from "@/modal/table/category/table-page";
+import CategoryTablePage from "@/modal/table/table-page";
 import { useModal } from "@/modal/popup/use-modal-store";
 import { Info } from "lucide-react";
 import NavigationInput from "@/components/navigation/navigation-input";
@@ -35,7 +35,7 @@ export const CategoryPage = () => {
         </div>
       </div>
       <div className="">
-        <CategoryTablePage />
+        <CategoryTablePage urlApi="/api/category"/>
       </div>
     
     </div>
