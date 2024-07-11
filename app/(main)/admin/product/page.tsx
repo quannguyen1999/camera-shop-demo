@@ -5,13 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export const ProductPage = () => {
-    const { setIsAdminPage, setIsMainPage } = useScrollStore();
-    const pathName = usePathname();
-  
-    useEffect(() => {
-      setIsAdminPage(true);
-      setIsMainPage(false);
-    }, [pathName]);
     return <div>
         <DemoPage />
     </div>

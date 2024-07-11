@@ -1,37 +1,29 @@
 'use client'
 import { InfScroll } from "@/components/InfScroll";
-import { CarouselToggle } from "@/components/carousel-toggle";
 import { CategoryBody } from "@/components/category/category-body";
 import { DashboardCarousel } from "@/components/dashboard/dashboard-carousel";
 import { ImageShadow } from "@/components/image/image-shadow";
 import { ProductBody } from "@/components/product/product-body";
 import { SeparatorItem } from "@/components/separator/separator-item";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
-import { useScrollStore } from "@/hook/use-scroll-store";
+import { DASHBOARD_2 } from "@/constants/image-constant";
 import { cn } from "@/lib/utils";
-import { Dancing_Script } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useScrollStore } from "@/hook/use-scroll-store";
+import { URL_DASHBOARD } from "@/constants/url-constant";
 
 const DashboardPage = () => {
-  const { setIsMainPage } = useScrollStore();
-  const pathName = usePathname();
-  useEffect(() => {
-    if (pathName !== "/") {
-      setIsMainPage(false);
-    } else {
-      setIsMainPage(true);
-    }
-  }, [pathName]);
+    const pathName = usePathname();
+    const {setIsMainPage} = useScrollStore();
+    useEffect(() => {
+      if (pathName.includes(URL_DASHBOARD)) {
+        setIsMainPage(true);
+      } else {
+        setIsMainPage(false);
+      }
+    }, [pathName, setIsMainPage]);
+
   return (
     <div className={cn("flex flex-col gap-4 bg-gray-100")}>
       <DashboardCarousel />
@@ -56,7 +48,7 @@ const DashboardPage = () => {
           </div>
         }
         key={2}
-        imageUrl="bg-[url('/images/dashboard_2.PNG')] "
+        imageUrl={`bg-[url('/images/${DASHBOARD_2}')]`}
       />
     </div>
   );

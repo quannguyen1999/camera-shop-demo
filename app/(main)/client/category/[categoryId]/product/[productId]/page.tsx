@@ -5,10 +5,10 @@ import { CategoryHeader } from "@/components/category/category-header";
 import { ProductBody } from "@/components/product/product-body";
 import { ProductDetail } from "@/components/product/product-detail";
 import { ProductSaleOff } from "@/components/product/product-saleoff";
-import { SeparatorItem } from "@/components/separator/separator-item";
 import { useScrollStore } from "@/hook/use-scroll-store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { URL_CATEGORY, URL_DASHBOARD, URL_PRODUCT } from "@/constants/url-constant";
 
 interface ProductIdPageProps {
   params: {
@@ -17,29 +17,29 @@ interface ProductIdPageProps {
   };
 }
 export const ProductIdPage = ({ params }: ProductIdPageProps) => {
-  const { setIsMainPage } = useScrollStore();
-  const pathName = usePathname();
   const values = [
     {
       value: "Trang chủ",
-      url: "/dashboard",
+      url: URL_DASHBOARD,
     },
     {
       value: "Mặt Hàng",
-      url: "/category/" + params.categoryId,
+      url: `${URL_CATEGORY}/${params.categoryId}`,
     },
     {
       value: "Sản phẩm",
-      url: "/product/" + params.productId,
+      url: `${URL_PRODUCT}/${params.productId}`,
     },
   ];
+  const pathName = usePathname();
+  const {setIsMainPage} = useScrollStore();
   useEffect(() => {
-    if (pathName !== "/") {
+    if (pathName.includes(URL_DASHBOARD)) {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);
     }
-  }, [pathName]);
+  }, [pathName, setIsMainPage]);
   return (
     <div className="flex flex-col px-40 pt-12 gap-5">
       <div className=" gap-2 row-span-3  pt-40">

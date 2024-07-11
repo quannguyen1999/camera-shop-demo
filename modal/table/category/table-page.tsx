@@ -7,17 +7,18 @@ import qs from "query-string";
 import { useModal } from "@/modal/popup/use-modal-store";
 export default function CategoryTablePage() {
   const urlApi = "/api/category";
-  const [loading, setLoading] = useState(true);
+  const { isRefresh } = useModal();
+  const [loading, setLoading] = useState(isRefresh);
   const [dataTable, setDataTable] = useState([]);
+  const [totalRecord, setTotalRecord] = useState(0);
   const [nextCursor, setNextCursor] = useState("");
   const [firstCursor, setFirstCursor] = useState("");
-
-  const { isRefresh } = useModal();
 
   useEffect(() => {
     const getData = async () => {
       const datas = await axios.get(urlApi);
       setDataTable(datas.data.items);
+      setTotalRecord(datas.data.total);
       setNextCursor(datas.data.nextCursor);
       setFirstCursor(datas.data.firstCursor);
     };
@@ -52,7 +53,7 @@ export default function CategoryTablePage() {
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto">
       {loading ? (
         <LoadingItem />
       ) : (
@@ -63,6 +64,7 @@ export default function CategoryTablePage() {
           isHasPreviousPage={
             firstCursor != undefined && firstCursor.trim().length > 0
           }
+          totalRecord={totalRecord}
           columns={columns}
           data={dataTable}
           onNextPage={() => onLoadPage("next")}

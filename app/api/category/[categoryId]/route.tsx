@@ -28,6 +28,32 @@ export async function GET(
   }
 }
 
+export async function DELETE(
+  req: Request,
+  { params }: { params: { categoryId: string } }
+) {
+  try {
+    const profile = await currentProfile();
+
+    if (!profile) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    await db.category.delete({
+      where: {
+        id: params.categoryId,
+      },
+    });
+
+    return NextResponse.json({
+      status: 'success'
+    });
+  } catch (error) {
+    console.log("[MESSAGE_GET]", error);
+    return new NextResponse("internal server error", { status: 500 });
+  }
+}
+
 export async function PATCH(
   req: Request,
   { params }: { params: { categoryId: string } }

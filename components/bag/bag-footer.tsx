@@ -1,11 +1,12 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import { URL_CART } from "@/constants/url-constant";
 
 export const BagFooter = () => {
   const router = useRouter();
   const redirectToPageCart = () => {
-    router.push('/cart');
+    router.push(URL_CART);
   }
   return (
     <>

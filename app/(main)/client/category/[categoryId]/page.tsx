@@ -6,6 +6,7 @@ import { RatioGroupItem } from "@/components/ratio-group-item";
 import { useScrollStore } from "@/hook/use-scroll-store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { URL_CATEGORY, URL_DASHBOARD } from "@/constants/url-constant";
 
 interface CatgegoryHeaderPageProps {
   params: {
@@ -13,25 +14,27 @@ interface CatgegoryHeaderPageProps {
   };
 }
 export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
-  const { setIsMainPage } = useScrollStore();
-  const pathName = usePathname();
   const values = [
     {
       value: 'Trang chủ', 
-      url: '/dashboard'
+      url: URL_DASHBOARD
     },
     {
       value: 'Mặt Hàng', 
-      url: '/category/'+params.categoryId
+      url: `${URL_CATEGORY}/${params.categoryId}`
     }
   ]
+
+  const pathName = usePathname();
+  const {setIsMainPage} = useScrollStore();
   useEffect(() => {
-    if (pathName !== "/") {
+    if (pathName.includes(URL_DASHBOARD)) {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);
     }
-  }, [pathName]);
+  }, [pathName, setIsMainPage]);
+
   return (
     <div className="flex flex-col px-20 pt-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 row-span-3  pt-40">
@@ -40,7 +43,18 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
         </div>
         <div className="items-center justify-start md:justify-end flex flex-row gap-2">
           <p>Hiển thị tất cả</p>
-          <RatioGroupItem />
+          {/* <RatioGroupItem menu={[
+            {
+              value: "Mới nhất"
+            },
+            {
+              value: "Tăng dần"
+            },
+            {
+              value: "Giảm dần"
+            },
+
+          ]}/> */}
         </div>
       </div>
       <div className="flex-1 flex flex-row">

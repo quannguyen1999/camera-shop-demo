@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-const MESSAGE_BATCH = 2;
+const MESSAGE_BATCH = 5;
 
 import { currentProfile } from "@/lib/current-profile";
 import { Category } from "@prisma/client";
@@ -81,12 +81,18 @@ export async function GET(req: Request) {
     }
     
     if (categories.length > 0) {
-        
       firstCursorOutput = firstCursor != null ? firstCursor : categories[0].id;
+    }
+
+    const total = await db.category.count();
+    if(total <= MESSAGE_BATCH){
+      nextCursorOutput = null;
+      firstCursorOutput = null;
     }
 
     return NextResponse.json({
       items: categories,
+      total: total,
       nextCursor: nextCursorOutput,
       firstCursor: firstCursorOutput,
     });

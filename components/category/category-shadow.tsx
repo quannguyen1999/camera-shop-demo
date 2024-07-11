@@ -1,3 +1,4 @@
+import { URL_CATEGORY } from "@/constants/url-constant";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -11,7 +12,7 @@ export const CategoryShadow = ({ imageUrl, content }: CategoryShadowProps) => {
   const router = useRouter();
 
   const redirectPageToCategory = () => {
-    router.push(`/category/${content}`);
+    router.push(`${URL_CATEGORY}/${content}`);
   };
 
   return (

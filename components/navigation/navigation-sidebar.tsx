@@ -42,8 +42,8 @@ const NavigationSidebar = ({
         <div className={cn("text-xs uppercase", isScrolled ? 'text-black' : 'text-white')}>Queenie’s</div>
         <div className={cn("text-xs uppercase ",isScrolled ? 'text-black' : 'text-white' )}>Decor </div>
       </div>
-      <div className="flex-1 hidden md:flex">
-        <NavigationInput />
+      <div className="flex-1 hidden md:flex ">
+        <NavigationInput placehodler="Bạn đang tìm sản phẩm gì"/>
       </div>
       <div className="hidden md:flex flex-row gap-2 items-center">
         <NavigationToggle header={<BagHeader isScroll={isScrolled}/>} body={<BagBody />} colorTextHeader="text-black"/>

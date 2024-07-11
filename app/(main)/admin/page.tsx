@@ -1,10 +1,10 @@
 import { initialProfile } from "@/lib/initial-profile";
-import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+import { URL_ADMIN_CATEGORY } from "@/constants/url-constant";
 
 const AdminPage = async () => {
-  const profile = await initialProfile();
-  return redirect(`/admin/category`);
+  await initialProfile();
+  return redirect(URL_ADMIN_CATEGORY);
 };
 
 export default AdminPage;

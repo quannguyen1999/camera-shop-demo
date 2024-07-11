@@ -1,19 +1,15 @@
 "use client";
 
+import { ActionTooltip } from "@/components/action-tooltip";
 import { AlertDialogItem } from "@/components/alert-dialog-item";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { URL_API_CATEGORY } from "@/constants/url-constant";
+import axios, { AxiosResponse } from "axios";
 import { useModal } from "@/modal/popup/use-modal-store";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { ImageOff, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
+import { toast } from "sonner";
+import { error } from "console";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -50,12 +46,19 @@ export const columns: ColumnDef<Category>[] = [
       return (
         <div className="relative h-full w-full">
           <div>
-            <Image
-              src={row.original.imageUrl}
-              height={50}
-              width={50}
-              alt={row.original.id}
-            />
+            {row.original.imageUrl == undefined ||
+            row.original.imageUrl.length <= 0 ? (
+              <ActionTooltip side="top" label="Chưa có hình">
+                <ImageOff size={25} />
+              </ActionTooltip>
+            ) : (
+              <Image
+                src={row.original.imageUrl}
+                height={50}
+                width={50}
+                alt={row.original.id}
+              />
+            )}
           </div>
         </div>
       );
@@ -66,22 +69,37 @@ export const columns: ColumnDef<Category>[] = [
     header: "Ngày cập nhập",
   },
   {
-    id: "actions",
+    id: "actionsDelete",
     cell: ({ row }) => {
-      const {onOpen} = useModal();
+      const { setIsRefresh} = useModal();
+      const deleteItem = async (isConfirm: boolean) => {
+
+        await axios
+          .delete(`${URL_API_CATEGORY}/${row.original.id}`)
+          .catch((error) => {
+            toast.error("Có lỗi xảy ra");
+          })
+          .finally(() => {
+            toast.success("Xóa thành công");
+          });
+
+        setIsRefresh(true);
+        setTimeout(() => setIsRefresh(false), 1000);
+      };
+      return <AlertDialogItem deleteItem={deleteItem} />;
+    },
+  },
+  {
+    id: "actionEdit",
+    cell: ({ row }) => {
+      const { onOpen } = useModal();
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem className="cursor-pointer"> Xóa </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer" onClick={() => onOpen("editCategory",row.original.id)}> Sửa </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div
+          onClick={() => onOpen("editCategory", row.original.id)}
+          className="cursor-pointer font-bold text-blue-600"
+        >
+          Edit
+        </div>
       );
     },
   },

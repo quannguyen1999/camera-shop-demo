@@ -16,12 +16,14 @@ import { UploadItem } from "@/components/upload-item";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { LoadingItem } from "@/components/loading-item";
+import { RatioGroupItem } from "@/components/ratio-group-item";
+import { AlertDialogItem } from "@/components/alert-dialog-item";
 
 export const AddCategoryModal = () => {
   const apiUrl = "/api/category/";
   const ADD_CONSTANT = "addCategory";
   const EDIT_CONSTANT = "editCategory";
-  
+
   const [loading, setLoading] = useState(false);
 
   const [menuParent, setMenuParent] = useState("");
@@ -68,6 +70,7 @@ export const AddCategoryModal = () => {
 
   //syncn data
   useEffect(() => {
+    // console.log(menuParent)
     setMenuParent(menuParent);
     setMenuChild(menuChild);
     setUrlImage(urlImage);
@@ -92,7 +95,7 @@ export const AddCategoryModal = () => {
             menuChild,
             urlImage,
           }),
-      type == ADD_CONSTANT ? 'Thêm thành công' :"Cập Nhập Thành Công"
+      type == ADD_CONSTANT ? "Thêm thành công" : "Cập Nhập Thành Công"
     );
   };
 
@@ -145,13 +148,17 @@ export const AddCategoryModal = () => {
             {type == "addCategory" ? "Thêm Mặt Hàng" : "Sữa Mặt Hàng"}
           </DialogTitle>
           <div className="flex flex-col p-4 gap-3">
-            <InputItem
+            <RatioGroupItem
               onSetValue={(value: any) => setMenuParent(value)}
               content={menuParent}
-              isMandatory
-              regex=""
-              placeHolder="Vui lòng nhập danh mục cha..."
-              label="Danh mục cha *"
+              menu={[
+                {
+                  value: "Phông nền chụp ảnh",
+                },
+                {
+                  value: "Phụ kiện chụp Food",
+                },
+              ]}
             />
             <InputItem
               onSetValue={(value: any) => setMenuChild(value)}

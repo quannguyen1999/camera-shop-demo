@@ -17,14 +17,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onNextPage: (value?: string) => void;
   onPreviousPage: (value?: string) => void;
-  isHasNextPage:  boolean;
+  isHasNextPage: boolean;
   isHasPreviousPage: boolean;
+  totalRecord: number;
 }
 
 export function DataTable<TData, TValue>({
@@ -33,7 +41,8 @@ export function DataTable<TData, TValue>({
   onNextPage,
   onPreviousPage,
   isHasNextPage,
-  isHasPreviousPage
+  isHasPreviousPage,
+  totalRecord,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -43,7 +52,43 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="p-4">
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter emails..."
+          value={table.getColumn("id")?.getFilterValue() as string}
+          onBlur={(event) =>
+            console.log("do later")
+          }
+          className="max-w-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+        />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-auto">
+              Columns
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -95,6 +140,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
+        <div>Total page: {totalRecord}</div>
         <Button
           variant="outline"
           size="sm"

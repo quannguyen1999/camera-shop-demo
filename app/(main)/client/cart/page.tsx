@@ -6,18 +6,19 @@ import { ProductSaleOff } from "@/components/product/product-saleoff";
 import { useScrollStore } from "@/hook/use-scroll-store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { URL_DASHBOARD } from "@/constants/url-constant";
 
 export const CartPage = () => {
-  const { setIsMainPage } = useScrollStore();
   const pathName = usePathname();
-
+  const {setIsMainPage} = useScrollStore();
   useEffect(() => {
-    if (pathName !== "/") {
+    if (pathName.includes(URL_DASHBOARD)) {
       setIsMainPage(false);
     } else {
       setIsMainPage(true);
     }
-  }, [pathName]);
+  }, [pathName, setIsMainPage]);
+
   return (
     <div className="flex flex-col pt-52 px-20">
       <ProductSaleOff />
@@ -25,7 +26,6 @@ export const CartPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <CartForm />
         <CartInfo />
-        {/* <CartForm /> */}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FileUpload } from "./file-upload";
 import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
 import Image from "next/image";
@@ -9,18 +9,33 @@ interface UploadItemProps {
   urlImage: string;
 }
 
-export const UploadItem = ({ label, onSetValue, urlImage }: UploadItemProps) => {
+export const UploadItem = ({
+  label,
+  onSetValue,
+  urlImage,
+}: UploadItemProps) => {
   const [url, setUrl] = useState(urlImage);
   const onChange = (url: string) => {
     setUrl(url);
     onSetValue(url);
   };
+
+  useEffect(() => {
+    setUrl(urlImage);
+  }, [urlImage]);
+
   return (
     <div className="flex flex-col gap-2">
       <p>{label}</p>
       <div className="text-black border-2 flex items-center justify-center border-gray-200 p-4 rounded-md">
         {url != undefined && url.trim().length > 0 ? (
-          <Image height={500} width={500} src={url} className="w-52" alt="none" />
+          <Image
+            height={500}
+            width={500}
+            src={url}
+            className="w-52"
+            alt="none"
+          />
         ) : (
           <UploadButton
             endpoint="serverImage"
