@@ -50,6 +50,9 @@ export const columns: ColumnDef<Category>[] = [
     accessorKey: "imageUrl",
     header: "Hình",
     cell: ({ row }) => {
+      const {onOpen} = useModal();
+
+
       return (
         <div className="relative h-full w-full">
           <div>
@@ -64,6 +67,8 @@ export const columns: ColumnDef<Category>[] = [
                 height={50}
                 width={50}
                 alt={row.original.id}
+                onClick={() => onOpen("detailImage", "" , row.original.imageUrl)}
+                className="cursor-pointer"
               />
             )}
           </div>
@@ -107,7 +112,7 @@ export const columns: ColumnDef<Category>[] = [
       const { onOpen } = useModal();
       return (
         <div
-          onClick={() => onOpen("editCategory", row.original.id)}
+          onClick={() => onOpen("editCategory", row.original.id, "")}
           className="cursor-pointer font-bold text-blue-600"
         >
           Edit

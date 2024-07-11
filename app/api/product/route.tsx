@@ -4,26 +4,8 @@ import { db } from "@/lib/db";
 const MESSAGE_BATCH = 5;
 
 import { currentProfile } from "@/lib/current-profile";
-import { Category } from "@prisma/client";
-// model Product {
-//   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-//   imageUrl   String
-//   content    String
-//   quantity   Int
-//   price      BigInt
-//   createdAt  DateTime @default(now())
-//   updatedAt  DateTime @updatedAt
-//   categoryId String   @db.ObjectId
-//   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-//   image      Image[]
-// }
+import { Category, Product } from "@prisma/client";
 
-// model Image {
-//   id        String  @id @default(auto()) @map("_id") @db.ObjectId
-//   imageUrl  String
-//   productId String  @db.ObjectId
-//   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-// }
 export async function POST(req: Request) {
   try {
     const { imageUrl, content, quantity, price, categoryId, images } = await req.json();
@@ -33,15 +15,25 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const category = await db.category.create({
+    const product = await db.product.create({
       data: {
-        imageUrl: urlImage,
-        contentMenuParent: menuParent,
-        contentMenuChild: menuChild,
+        imageUrl: imageUrl,
+        content: content,
+        quantity: quantity,
+        price: price,
+        categoryId: categoryId,
       },
     });
 
-    return NextResponse.json(category);
+    images?.map(async (t: string)=>{
+      await db.image.create({
+          data: {
+            imageUrl: t,
+            productId: product.id
+          }
+      })
+    })
+    return NextResponse.json(product);
   } catch (error) {
     return new NextResponse("Internal error", { status: 500 });
   }
@@ -60,10 +52,10 @@ export async function GET(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    let categories: Category[] = [];
+    let products: Product[] = [];
 
     if (nextCursor) {
-      categories = await db.category.findMany({
+      products = await db.product.findMany({
         take: MESSAGE_BATCH,
         skip: 1,
         cursor: {
@@ -74,7 +66,7 @@ export async function GET(req: Request) {
         },
       });
     } else if (firstCursor) {
-      categories = await db.category.findMany({
+      products = await db.product.findMany({
         take: MESSAGE_BATCH,
         cursor: {
           id: firstCursor,
@@ -84,7 +76,7 @@ export async function GET(req: Request) {
         },
       });
     } else {
-      categories = await db.category.findMany({
+      products = await db.product.findMany({
         take: MESSAGE_BATCH,
         orderBy: {
           createdAt: "desc",
@@ -95,22 +87,22 @@ export async function GET(req: Request) {
     let nextCursorOutput = null;
     let firstCursorOutput = null;
 
-    if (categories.length === MESSAGE_BATCH) {
-      nextCursorOutput = categories[MESSAGE_BATCH - 1].id;
+    if (products.length === MESSAGE_BATCH) {
+      nextCursorOutput = products[MESSAGE_BATCH - 1].id;
     }
     
-    if (categories.length > 0) {
-      firstCursorOutput = firstCursor != null ? firstCursor : categories[0].id;
+    if (products.length > 0) {
+      firstCursorOutput = firstCursor != null ? firstCursor : products[0].id;
     }
 
-    const total = await db.category.count();
+    const total = await db.product.count();
     if(total <= MESSAGE_BATCH){
       nextCursorOutput = null;
       firstCursorOutput = null;
     }
 
     return NextResponse.json({
-      items: categories,
+      items: products,
       total: total,
       nextCursor: nextCursorOutput,
       firstCursor: firstCursorOutput,

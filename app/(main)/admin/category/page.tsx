@@ -4,6 +4,8 @@ import CategoryTablePage from "@/modal/table/table-page";
 import { useModal } from "@/modal/popup/use-modal-store";
 import { Info } from "lucide-react";
 import NavigationInput from "@/components/navigation/navigation-input";
+import TablePage from "@/modal/table/table-page";
+import { columns } from "@/modal/table/category/columns";
 
 export const CategoryPage = () => {
   const { onOpen, setIsRefresh } = useModal();
@@ -26,7 +28,7 @@ export const CategoryPage = () => {
           <NavigationInput placehodler="Tìm kiếm" />
         </div> */}
         <div className=" flex">
-          <Button onClick={() => onOpen("addCategory", "")}>
+          <Button onClick={() => onOpen("addCategory", "", "")}>
             Thêm Mặt Hàng
           </Button>
         </div>
@@ -35,7 +37,7 @@ export const CategoryPage = () => {
         </div>
       </div>
       <div className="">
-        <CategoryTablePage urlApi="/api/category"/>
+        <TablePage urlApi="/api/category" columns={columns}/>
       </div>
     
     </div>

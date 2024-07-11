@@ -18,9 +18,10 @@ import { toast } from "sonner";
 import { LoadingItem } from "@/components/loading-item";
 import { RatioGroupItem } from "@/components/ratio-group-item";
 import { AlertDialogItem } from "@/components/alert-dialog-item";
+import { URL_API_CATEGORY } from "@/constants/url-constant";
 
 export const AddCategoryModal = () => {
-  const apiUrl = "/api/category/";
+  const apiUrl = URL_API_CATEGORY;
   const ADD_CONSTANT = "addCategory";
   const EDIT_CONSTANT = "editCategory";
 

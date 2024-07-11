@@ -2,7 +2,7 @@
 
 import { ActionTooltip } from "@/components/action-tooltip";
 import { AlertDialogItem } from "@/components/alert-dialog-item";
-import { URL_API_CATEGORY } from "@/constants/url-constant";
+import { URL_API_CATEGORY, URL_API_PRODUCT } from "@/constants/url-constant";
 import axios, { AxiosResponse } from "axios";
 import { useModal } from "@/modal/popup/use-modal-store";
 import { ColumnDef } from "@tanstack/react-table";
@@ -14,28 +14,33 @@ import { formatISOStringToDate } from "@/util/function-util";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Category = {
+export type Product = {
   id: string;
-  contentMenuChild: string;
-  contentMenuParent: string;
-  createdAt: string;
+  content: number,
   imageUrl: string;
+  price: number,
+  quantityId: string,
+  createdAt: string;
   updatedAt: string;
 };
 
-export const columns: ColumnDef<Category>[] = [
+export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "id",
     header: "id",
     
   },
   {
-    accessorKey: "contentMenuChild",
-    header: "Menu con",
+    accessorKey: "quantity",
+    header: "Số lượng",
   },
   {
-    accessorKey: "contentMenuParent",
-    header: "Menu cha",
+    accessorKey: "price",
+    header: "Giá",
+  },
+  {
+    accessorKey: "quantityId",
+    header: "Mã mặt hàng",
   },
   {
     accessorKey: "createdAt",
@@ -87,7 +92,7 @@ export const columns: ColumnDef<Category>[] = [
       const deleteItem = async (isConfirm: boolean) => {
 
         await axios
-          .delete(`${URL_API_CATEGORY}/${row.original.id}`)
+          .delete(`${URL_API_PRODUCT}/${row.original.id}`)
           .catch((error) => {
             toast.error("Có lỗi xảy ra");
           })
@@ -107,7 +112,7 @@ export const columns: ColumnDef<Category>[] = [
       const { onOpen } = useModal();
       return (
         <div
-          onClick={() => onOpen("editCategory", row.original.id)}
+          onClick={() => onOpen("editProduct", row.original.id, "")}
           className="cursor-pointer font-bold text-blue-600"
         >
           Edit
