@@ -2,6 +2,7 @@
 
 import {
   ColumnDef,
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -24,6 +25,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -44,11 +46,26 @@ export function DataTable<TData, TValue>({
   isHasPreviousPage,
   totalRecord,
 }: DataTableProps<TData, TValue>) {
+ // Define the default visibility state for columns
+ const defaultVisibility: VisibilityState = {
+  id: false, // Hide the "email" column by default
+  createdAt: false, // Hide the "amount" column by default
+  updatedAt: false, // Hide the "amount" column by default
+};
+
+const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(defaultVisibility);
+
+  // const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+
   const table = useReactTable({
     data,
     columns,
+    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    state: {
+      columnVisibility,
+    },
   });
 
   return (

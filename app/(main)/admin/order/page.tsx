@@ -3,8 +3,8 @@
 import DemoPage from "@/modal/table/table-page"
 
 export const OrderPage = () => {
-    return <div>
-        order test
+    return <div className="flex text-center items-center justify-center font-bold h-full w-full">
+        TO BE CON TỜ NIU
     </div>
 }
 

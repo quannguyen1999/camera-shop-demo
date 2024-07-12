@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { URL_ADMIN_CATEGORY, URL_ADMIN_ORDER, URL_ADMIN_PRODUCT } from "@/constants/url-constant";
+import { URL_ADMIN_CATEGORY, URL_ADMIN_ORDER, URL_ADMIN_PRODUCT, URL_DASHBOARD } from "@/constants/url-constant";
 import { UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
@@ -23,6 +23,10 @@ export const MenuSection = () => {
   const rouer = useRouter();
   const redirectToPage = (url: string) => {
     rouer.push(url);
+  };
+
+  const redirectToPageClient = () => {
+    rouer.push(URL_DASHBOARD);
   };
   return (
     <div className="w-60 md:flex flex-col hidden  bg-gray-100 text-black">
@@ -47,6 +51,9 @@ export const MenuSection = () => {
             {t.name}
           </div>
         ))}
+        <div className="flex-1 flex items-end justify-end">
+            <Button className="w-full m-5" onClick={()=>redirectToPageClient()}>Trang Client</Button>
+        </div>
       </div>
     </div>
   );

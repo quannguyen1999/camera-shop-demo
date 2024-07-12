@@ -28,19 +28,18 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "id",
     header: "id",
-    
+    // enableSorting: true,
+    // enableHiding: false,
   },
   {
     accessorKey: "quantity",
     header: "Số lượng",
+    // enableSorting: true,
+    // enableHiding: false,
   },
   {
     accessorKey: "price",
     header: "Giá",
-  },
-  {
-    accessorKey: "quantityId",
-    header: "Mã mặt hàng",
   },
   {
     accessorKey: "createdAt",
@@ -55,6 +54,7 @@ export const columns: ColumnDef<Product>[] = [
     accessorKey: "imageUrl",
     header: "Hình",
     cell: ({ row }) => {
+      const {onOpen} = useModal();
       return (
         <div className="relative h-full w-full">
           <div>
@@ -68,7 +68,9 @@ export const columns: ColumnDef<Product>[] = [
                 src={row.original.imageUrl}
                 height={50}
                 width={50}
+                onClick={() => onOpen("detailImage", "" , row.original.imageUrl)}
                 alt={row.original.id}
+                className="cursor-pointer"
               />
             )}
           </div>

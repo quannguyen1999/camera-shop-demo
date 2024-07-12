@@ -26,7 +26,7 @@ export const ProductPage = () => {
           </div>
         </div>
         <div className=" flex">
-          <Button onClick={() => onOpen("addCategory", "", "")}>
+          <Button onClick={() => onOpen("addProduct", "", "")}>
             Thêm Sản phẩm 
           </Button>
         </div>

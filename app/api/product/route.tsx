@@ -8,7 +8,7 @@ import { Category, Product } from "@prisma/client";
 
 export async function POST(req: Request) {
   try {
-    const { imageUrl, content, quantity, price, categoryId, images } = await req.json();
+    const { imageUrl, content, quantity, price, categoryId, images, name } = await req.json();
     const profile = await currentProfile();
 
     if (!profile) {
@@ -21,20 +21,22 @@ export async function POST(req: Request) {
         content: content,
         quantity: quantity,
         price: price,
+        name: name,
         categoryId: categoryId,
       },
     });
 
-    images?.map(async (t: string)=>{
+    images?.map(async (t: any)=>{
       await db.image.create({
           data: {
-            imageUrl: t,
+            imageUrl: t.imageUrl,
             productId: product.id
           }
       })
     })
     return NextResponse.json(product);
   } catch (error) {
+    console.log("hehe")
     return new NextResponse("Internal error", { status: 500 });
   }
 }

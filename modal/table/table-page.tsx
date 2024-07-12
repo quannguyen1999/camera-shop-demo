@@ -20,7 +20,6 @@ export default function TablePage({urlApi, columns}: TablePageProps) {
   useEffect(() => {
     const getData = async () => {
       const datas = await axios.get(urlApi);
-      console.log(datas)
       setDataTable(datas.data.items);
       setTotalRecord(datas.data.total);
       setNextCursor(datas.data.nextCursor);

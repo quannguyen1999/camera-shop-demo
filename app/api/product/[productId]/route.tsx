@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 
 export async function GET(
   req: Request,
-  { params }: { params: { categoryId: string } }
+  { params }: { params: { productId: string } }
 ) {
   try {
     const profile = await currentProfile();
@@ -13,14 +13,26 @@ export async function GET(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    let categories = await db.category.findFirst({
+    let products = await db.product.findFirst({
       where: {
-        id: params.categoryId,
+        id: params.productId,
       },
     });
 
+    let images = null;
+    if(products?.id != null){
+      images = await db.image.findMany({
+        where: {
+          productId: products.id
+        }
+      })
+    }
+
+   
+
     return NextResponse.json({
-      categories,
+      products,
+      images
     });
   } catch (error) {
     console.log("[MESSAGE_GET]", error);
@@ -30,7 +42,7 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { categoryId: string } }
+  { params }: { params: { productId: string } }
 ) {
   try {
     const profile = await currentProfile();
@@ -39,9 +51,9 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    await db.category.delete({
+    await db.product.delete({
       where: {
-        id: params.categoryId,
+        id: params.productId,
       },
     });
 
@@ -56,29 +68,52 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { categoryId: string } }
+  { params }: { params: { productId: string } }
 ) {
   try {
     const profile = await currentProfile();
-    const { menuParent, menuChild, urlImage } = await req.json();
+    const { imageUrl, content, quantity, price, categoryId, images, name } = await req.json();
 
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const categoryUpdate = await db.category.update({
+    const productUpdate = await db.product.update({
       where: {
-        id: params.categoryId,
+        id: params.productId,
       },
       data: {
-        imageUrl: urlImage,
-        contentMenuParent: menuParent,
-        contentMenuChild: menuChild,
+        imageUrl: imageUrl,
+        content: content,
+        quantity: quantity,
+        price: price,
+        categoryId: categoryId,
+        name: name       
       },
     });
 
+    images?.map(async (t: any)=>{
+      if(t.id != null){
+        await db.image.update({
+          where: {
+            id: t.id,
+          },
+          data: {
+            imageUrl: t.imageUrl  
+          },
+      })
+      }else{
+        await db.image.create({
+          data: {
+            imageUrl: t.imageUrl,
+            productId: params.productId
+          }
+      })
+      }
+    })
+
     return NextResponse.json({
-      categoryUpdate,
+      productUpdate,
     });
   } catch (error) {
     console.log("[MESSAGE_GET]", error);

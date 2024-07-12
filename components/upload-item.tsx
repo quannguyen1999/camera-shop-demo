@@ -33,7 +33,7 @@ export const UploadItem = ({
             height={500}
             width={500}
             src={url}
-            className="w-52"
+            className="w-52 h-52"
             alt="none"
           />
         ) : (

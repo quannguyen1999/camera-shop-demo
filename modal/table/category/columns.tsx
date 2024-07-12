@@ -51,8 +51,6 @@ export const columns: ColumnDef<Category>[] = [
     header: "Hình",
     cell: ({ row }) => {
       const {onOpen} = useModal();
-
-
       return (
         <div className="relative h-full w-full">
           <div>
