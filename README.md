@@ -1,7 +1,7 @@
 # Command
 npm i
-npm prisma generate 
-npm prisma push
+npx prisma generate 
+npx prisma push
 
 # Add file env
 # Clerk

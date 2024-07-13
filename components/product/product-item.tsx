@@ -18,9 +18,11 @@ export const ProductItem = ({ imageUrl, name, price }: ProductItemProps) => {
   return (
     <div onClick={() => redirectToDetailProduct()} className="rounded-md flex flex-col h-80 text-center gap-4 bg-gray-200 hover:bg-gray-300 duration-75 transition-all p-3 cursor-pointer">
       <div className="flex-1">
+        
         <ImageShadow
           isScale={true}
-          imageUrl="bg-[url('/images/dashboard_1.PNG')] "
+          imageUrl={imageUrl}
+          // imageUrl={"bg-[url('" + imageUrl + "')]"}
           body={
             <div className="w-full h-full bg-transparent opacity-0 hover:opacity-100 flex hover:flex-row gap-2 items-center justify-center text-white">
               <div className="relative">
@@ -43,6 +45,7 @@ export const ProductItem = ({ imageUrl, name, price }: ProductItemProps) => {
         />
       </div>
       <p className="font-bold text-xs">{name}</p>
+      <p>{imageUrl}</p>
       <p className="text-xs">{price}</p>
     </div>
   );

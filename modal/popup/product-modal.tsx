@@ -33,7 +33,7 @@ export const AddProductModal = () => {
   const ADD_CONSTANT = "addProduct";
   const EDIT_CONSTANT = "editProduct";
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [imageUrl, setImageUrl] = useState("");
   const [content, setContent] = useState("");
@@ -51,14 +51,17 @@ export const AddProductModal = () => {
     isOpen && (type === ADD_CONSTANT || type === EDIT_CONSTANT);
 
   const onChangeImage = (id: string, value: string) => {
-    setImageUrl(value);
-    setImages((prevImages) => [
-      ...prevImages,
-      {
-        id: id,
-        imageUrl: value,
-      },
-    ]);
+    if(value != null && value.trim().length > 0){
+      setImageUrl(value);
+      setImages((prevImages) => [
+        ...prevImages,
+        {
+          id: id,
+          imageUrl: value,
+        },
+      ]);
+    }
+    
   };
 
   const resetMainImage = () => {
@@ -77,13 +80,14 @@ export const AddProductModal = () => {
   useEffect(() => {
     const getById = async () => {
       //Common
+      setLoading(true);
       let data = await axios
         .get(`${apiUrl}/${id}`)
         .catch((error) => {
           toast.error("Có lỗi xảy ra");
         })
         .finally(() => {
-          setLoading(false);
+          // setLoading(false);
         });
 
       if (data != null) {
@@ -100,6 +104,7 @@ export const AddProductModal = () => {
     };
 
     const getAllCategories = async () => {
+      setLoading(true);
       let data = await axios
         .get(`${URL_API_CATEGORY}/get-all-name`)
         .catch((error) => {
@@ -119,12 +124,11 @@ export const AddProductModal = () => {
             value: t.contentMenuChild,
           });
         });
-        console.log(result);
+
         setCategorys(result);
       }
     };
 
-    setLoading(true);
     getAllCategories();
     if (type === EDIT_CONSTANT) {
       getById();
@@ -132,7 +136,6 @@ export const AddProductModal = () => {
     if (type === ADD_CONSTANT) {
       clearData();
     }
-    setLoading(false);
   }, [id, type]);
 
   //syncn data
@@ -148,16 +151,17 @@ export const AddProductModal = () => {
   const handleClose = () => {
     onClose();
     setId("");
+    clearData();
   };
 
   const onSubmit = async () => {
-    if(validateForm() == false){
-        return;
-    };
+    if (validateForm() == false) {
+      return;
+    }
 
     const parsedValueQuantity = parseInt(quantity, 10);
     const parsedValuePrice = parseInt(price.toString(), 10);
-    
+
     triggerApi(
       type === ADD_CONSTANT
         ? axios.post(apiUrl, {
@@ -167,7 +171,7 @@ export const AddProductModal = () => {
             price: parsedValuePrice,
             categoryId,
             name,
-            images
+            images,
           })
         : axios.patch(`${apiUrl}/${id}`, {
             imageUrl,
@@ -176,7 +180,7 @@ export const AddProductModal = () => {
             price: parsedValuePrice,
             categoryId,
             name,
-            images
+            images,
           }),
       type == ADD_CONSTANT ? "Thêm thành công" : "Cập Nhập Thành Công"
     );
@@ -223,11 +227,11 @@ export const AddProductModal = () => {
 
   const chooseImage = (urlImage: string) => {
     setImageUrl(urlImage);
-  }
+  };
 
   const onChangeValueComboBox = (value: string) => {
     setCategoryId(value);
-  }
+  };
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
@@ -237,6 +241,12 @@ export const AddProductModal = () => {
       dark:bg-gray-800
       "
       >
+        {loading && (
+          <div className="z-10 flex shadow-2xl text-center items-center justify-center absolute w-full h-full bg-black bg-opacity-40 hover:bg-opacity-20 transition-all cursor-pointer">
+            <LoadingItem textColorClass="text-white" />
+          </div>
+        )}
+
         <DialogHeader className="pt-5 px-6">
           <DialogTitle className="text-base  dark:text-white">
             {type == ADD_CONSTANT ? "Thêm Sản phẩm" : "Sữa Sản phẩm"}

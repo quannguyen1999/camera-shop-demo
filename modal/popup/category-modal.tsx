@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import axios, { AxiosResponse } from "axios";
-import qs from "query-string";
+
 import { Button } from "@/components/ui/button";
 import { useModal } from "./use-modal-store";
 import { InputItem } from "@/components/input-item";
@@ -26,7 +26,6 @@ export const AddCategoryModal = () => {
   const EDIT_CONSTANT = "editCategory";
 
   const [loading, setLoading] = useState(false);
-  
 
   const [menuParent, setMenuParent] = useState("");
   const [menuChild, setMenuChild] = useState("");
@@ -46,8 +45,9 @@ export const AddCategoryModal = () => {
   useEffect(() => {
     const getById = async () => {
       //Common
+      setLoading(true);
       let data = await axios
-        .get(`${apiUrl}${id}`)
+        .get(`${apiUrl}/${id}`)
         .catch((error) => {
           toast.error("Có lỗi xảy ra");
         })
@@ -63,9 +63,7 @@ export const AddCategoryModal = () => {
     };
 
     if (type === EDIT_CONSTANT) {
-      setLoading(true);
       getById();
-      setLoading(true);
     }
     if (type === ADD_CONSTANT) {
       clearData();
@@ -83,6 +81,7 @@ export const AddCategoryModal = () => {
   const handleClose = () => {
     onClose();
     setId("");
+    clearData();
   };
 
   const onSubmit = async () => {
@@ -94,7 +93,7 @@ export const AddCategoryModal = () => {
             menuChild,
             urlImage,
           })
-        : axios.patch(`${apiUrl}${id}`, {
+        : axios.patch(`${apiUrl}/${id}`, {
             menuParent,
             menuChild,
             urlImage,
@@ -144,14 +143,20 @@ export const AddCategoryModal = () => {
       <DialogContent
         className="bg-white text-black 
       p-0 overflow-hidden w-full transition-all
-      dark:bg-gray-800
+      dark:bg-gray-800 
       "
       >
-        <DialogHeader className="pt-5 px-6">
+       
+        {loading &&<div className="z-10 flex shadow-2xl text-center items-center justify-center absolute w-full h-full bg-black bg-opacity-40 hover:bg-opacity-20 transition-all cursor-pointer">
+          <LoadingItem textColorClass="text-white" />
+        </div>}
+
+        <DialogHeader className="p-4">
           <DialogTitle className="text-base text-center dark:text-white">
             {type == "addCategory" ? "Thêm Mặt Hàng" : "Sữa Mặt Hàng"}
           </DialogTitle>
-          <div className="flex flex-col p-4 gap-3">
+
+          <div className="flex flex-col gap-3">
             <RatioGroupItem
               onSetValue={(value: any) => setMenuParent(value)}
               content={menuParent}
@@ -179,7 +184,7 @@ export const AddCategoryModal = () => {
             />
           </div>
         </DialogHeader>
-        <DialogFooter className="p-5 bg-gray-100 dark:bg-gray-800 px-6 py-4">
+        <DialogFooter className=" bg-gray-100 dark:bg-gray-800 px-6 py-4">
           <Button
             onClick={() => onClose()}
             type="submit"

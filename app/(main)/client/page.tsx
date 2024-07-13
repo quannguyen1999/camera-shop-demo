@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { InfScroll } from "@/components/InfScroll";
 import { CategoryBody } from "@/components/category/category-body";
 import { DashboardCarousel } from "@/components/dashboard/dashboard-carousel";
@@ -9,20 +9,34 @@ import { Separator } from "@/components/ui/separator";
 import { DASHBOARD_2 } from "@/constants/image-constant";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useScrollStore } from "@/hook/use-scroll-store";
-import { URL_DASHBOARD } from "@/constants/url-constant";
-
+import { URL_API_PRODUCT, URL_DASHBOARD } from "@/constants/url-constant";
+import { ProductTopSell } from "@/components/product/product-top-sell";
+import qs from "query-string";
+import axios, { AxiosResponse } from "axios";
 const DashboardPage = () => {
-    const pathName = usePathname();
-    const {setIsMainPage} = useScrollStore();
-    useEffect(() => {
-      if (pathName.includes(URL_DASHBOARD)) {
-        setIsMainPage(true);
-      } else {
-        setIsMainPage(false);
-      }
-    }, [pathName, setIsMainPage]);
+  const pathName = usePathname();
+
+  const { setIsMainPage } = useScrollStore();
+  useEffect(() => {
+    if (pathName.includes(URL_DASHBOARD)) {
+      setIsMainPage(true);
+    } else {
+      setIsMainPage(false);
+    }
+  }, [pathName, setIsMainPage]);
+
+  const [data, setData] = useState<any>([]);
+  useEffect(() => {
+    const getData = async () => {
+      const url = qs.stringifyUrl({ url: `${URL_API_PRODUCT}/top` });
+      const datas = await axios.get(url);
+      setData(datas.data.items);
+    };
+
+    getData();
+  }, []);
 
   return (
     <div className={cn("flex flex-col gap-4 bg-gray-100")}>
@@ -34,13 +48,18 @@ const DashboardPage = () => {
       <div className="px-4">
         <SeparatorItem name="SẢN PHẨM BÁN CHẠY" />
       </div>
-      <ProductBody />
+      <div className="px-4">
+        <ProductBody  data={data}/>
+      </div>
+
       <Separator />
       <InfScroll />
       <div className="px-4">
         <SeparatorItem name="PHÔNG NỀN CHỤP ẢNH" />
       </div>
-      <ProductBody />
+      <div className="px-4">
+        <ProductBody data={data}/>
+      </div>
       <ImageShadow
         body={
           <div className="flex h-96">

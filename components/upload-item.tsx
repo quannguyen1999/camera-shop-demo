@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FileUpload } from "./file-upload";
 import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
 import Image from "next/image";
+import { CircleX, RemoveFormatting } from "lucide-react";
 
 interface UploadItemProps {
   label: string;
@@ -20,6 +21,11 @@ export const UploadItem = ({
     onSetValue(url);
   };
 
+  const removeUrl = () => {
+    setUrl("");
+    onSetValue("");
+  }
+
   useEffect(() => {
     setUrl(urlImage);
   }, [urlImage]);
@@ -29,13 +35,18 @@ export const UploadItem = ({
       <p>{label}</p>
       <div className="text-black border-2 flex items-center justify-center border-gray-200 p-4 rounded-md">
         {url != undefined && url.trim().length > 0 ? (
-          <Image
-            height={500}
-            width={500}
-            src={url}
-            className="w-52 h-52"
-            alt="none"
-          />
+          <div className="relative">
+            <Image
+              height={500}
+              width={500}
+              src={url}
+              className="w-52 h-52"
+              alt="none"
+            />
+            <div className="absolute text-white rounded-full bg-red-500 cursor-pointer  -top-3 -right-3" onClick={() => removeUrl()}>
+              <CircleX size={23} />
+            </div>
+          </div>
         ) : (
           <UploadButton
             endpoint="serverImage"

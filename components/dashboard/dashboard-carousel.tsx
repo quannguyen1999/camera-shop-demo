@@ -29,7 +29,7 @@ const items = [
       </>
     }
     key={1}
-    imageUrl="bg-[url('/images/dashboard_1.png')] "
+    imageUrl="/images/dashboard_1.PNG"
   />,
   <ImageShadow
     body={
@@ -49,7 +49,7 @@ const items = [
       </>
     }
     key={2}
-    imageUrl="bg-[url('/images/dashboard_2.PNG')] "
+    imageUrl="/images/dashboard_2.PNG"
   />,
 ];
 export const DashboardCarousel = () => {

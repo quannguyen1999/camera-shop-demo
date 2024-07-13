@@ -1,15 +1,23 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { currentProfile } from "@/lib/current-profile";
-import { Category } from "@prisma/client";
+
+const MESSAGE_BATCH = 10;
+
+import {  Product } from "@prisma/client";
+
 export async function GET(req: Request) {
   try {
-    let categories: Category[] = [];
+    let products: Product[] = [];
 
-    categories = await db.category.findMany({});
-  
+    products = await db.product.findMany({
+      take: MESSAGE_BATCH,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
     return NextResponse.json({
-      items: categories,
+      items: products,
     });
   } catch (error) {
     console.log("[MESSAGE_GET]", error);

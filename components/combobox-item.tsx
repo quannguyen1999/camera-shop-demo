@@ -42,7 +42,7 @@ export const ComboboxItem = ({ datas, label, placeholder, currentValue, onChange
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between"
+            className="w-full justify-between focus-visible:ring-0 focus-visible:ring-offset-0"
           >
             {id
               ? datas.find((data) => data.id === id)?.value
