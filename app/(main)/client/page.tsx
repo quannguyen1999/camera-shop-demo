@@ -12,7 +12,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useScrollStore } from "@/hook/use-scroll-store";
 import { URL_API_PRODUCT, URL_DASHBOARD } from "@/constants/url-constant";
-import { ProductTopSell } from "@/components/product/product-top-sell";
 import qs from "query-string";
 import axios, { AxiosResponse } from "axios";
 const DashboardPage = () => {

@@ -2,85 +2,31 @@ import { MapPin, Mail, Phone, ChevronDown } from "lucide-react";
 import { MenuBody } from "../menu/menu-body";
 import { ActionTooltip } from "../action-tooltip";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import qs from "query-string";
+import axios, { AxiosResponse } from "axios";
+import { URL_API_CATEGORY, URL_API_PRODUCT } from "@/constants/url-constant";
 
-const listMenu = [
-  {
-    id: 1,
-    menuHeader: "Phụ kiện chụp ảnh",
-    listChild: [
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-    ],
-  },
-  {
-    id: 2,
-    menuHeader: "Đồ trang trí",
-    listChild: [
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-    ],
-  },
-  {
-    id: 3,
-    menuHeader: "Blog",
-    listChild: [
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-    ],
-  },
-];
 interface NavigationSidebarProps {
     isScrolled: boolean
   }
 const SideBarHeader = ({
     isScrolled
 }: NavigationSidebarProps) => {
+  const [menu, setMenu] = useState<any[]>([]);
+  useEffect(()=>{
+    const getAllCategories =  async () => {
+      const url = qs.stringifyUrl({ url: `${URL_API_CATEGORY}/get-all-menu` });
+      const datas = await axios.get(url);
+      setMenu(datas.data.items);
+    }
+
+    getAllCategories();
+  }, [])
   return (
     <div className={cn("hidden gap-1  h-24 w-full px-8  text-white md:grid sm:grid-cols-1 md:grid-cols-1 lg:grid-col-1 xl:grid-cols-2", isScrolled ? 'bg-gray-50 shadow-2xl text-black hover:text-black' : '')}>
       <div className="flex flex-row gap-5 text-sm md:justify-center lg:justify-center  xl:justify-start ">
-        {listMenu.map((t) => (
+        {menu.map((t) => (
           <MenuBody
             key={t.id}
             nameHeader={t.menuHeader}

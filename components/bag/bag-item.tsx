@@ -1,3 +1,4 @@
+import { useOrderStore } from "@/hook/use-order-store";
 import { BadgeX } from "lucide-react";
 import Image from "next/image";
 
@@ -18,6 +19,11 @@ export const BadItem = ({
     totalPrice,
     totalItem
 }: BadItemProps) => {
+  const {data, setOrder} = useOrderStore();
+  const removeItem = () => {
+    data.products = data.products?.filter((t) => t.id != id);
+    setOrder(data);
+  }
   return (
     <div className="flex flex-row p-1 gap-2 hover:bg-gray-100 cursor-pointer items-center justify-center">
       <div>
@@ -31,7 +37,7 @@ export const BadItem = ({
         </p>
       </div>
       <div className="flex  justify-center ">
-        <BadgeX size={15} className="cursor-pointer " color="gray"/>
+        <BadgeX size={15} className="cursor-pointer " color="gray" onClick={() => removeItem()}/>
       </div>
     </div>
   );

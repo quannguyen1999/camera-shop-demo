@@ -5,13 +5,14 @@ import { MenuItems } from "./menu-items";
 
 interface MenuItemProps {
   nameHeader: string;
-  listChild: any[]
+  listChild: any[];
 }
 export const MenuBody = ({ nameHeader, listChild }: MenuItemProps) => {
-    return (
-      
-      <NavigationToggle colorTextHeader="text-black" header={<MenuHeader nameHeader={nameHeader} />} body={<MenuItems listChild={listChild} />} />
-   
-       
-    )
+  return (
+    <NavigationToggle
+      colorTextHeader="text-black"
+      header={<MenuHeader nameHeader={nameHeader} />}
+      body={<MenuItems listChild={listChild} />}
+    />
+  );
 };

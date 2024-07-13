@@ -11,7 +11,7 @@ export const ProductBody = ({data}: ProductBodyProps) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5  row-span-3 gap-10 px-2 ">
       {data.map((t: any) => (
-        <ProductShadow imageUrl={t.imageUrl} content={t.content} id={t.id} price={t.price}/>
+        <ProductShadow name={t.name} imageUrl={t.imageUrl} content={t.content} id={t.id} price={t.price}/>
       ))}
     </div>
   );
