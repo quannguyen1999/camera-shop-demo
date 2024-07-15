@@ -1,4 +1,4 @@
-import { URL_CATEGORY } from "@/constants/url-constant";
+import { URL_CATEGORY, URL_PRODUCT } from "@/constants/url-constant";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Heart, PilcrowSquare, ShoppingCart } from "lucide-react";
 import Image from "next/image";
@@ -33,9 +33,11 @@ export const ProductShadow = ({
     setLike(!like);
   };
 
+  const goDetailPage = () => {
+    router.push(`${URL_PRODUCT}/${id}`)
+  }
+
   const addToCart = () => {
-    console.log("call");
-    console.log(data);
     // Check if the product already exists in the cart
     const existingProduct = data.products?.find((t) => t.id === id);
 
@@ -103,7 +105,7 @@ export const ProductShadow = ({
           </div>
           <div className="relative">
             <ActionTooltip side="top" label="Xem chi tiết">
-              <div className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all">
+              <div onClick={() => goDetailPage()} className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all">
                 <ArrowRight size={10} />
               </div>
             </ActionTooltip>

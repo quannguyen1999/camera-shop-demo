@@ -8,7 +8,8 @@ import { Category, Product } from "@prisma/client";
 
 export async function POST(req: Request) {
   try {
-    const { imageUrl, content, quantity, price, categoryId, images, name } = await req.json();
+    const { imageUrl, content, quantity, price, categoryId, images, name } =
+      await req.json();
     const profile = await currentProfile();
 
     if (!profile) {
@@ -26,17 +27,17 @@ export async function POST(req: Request) {
       },
     });
 
-    images?.map(async (t: any)=>{
+    images?.map(async (t: any) => {
       await db.image.create({
-          data: {
-            imageUrl: t.imageUrl,
-            productId: product.id
-          }
-      })
-    })
+        data: {
+          imageUrl: t.imageUrl,
+          productId: product.id,
+        },
+      });
+    });
     return NextResponse.json(product);
   } catch (error) {
-    console.log("hehe")
+    console.log("hehe");
     return new NextResponse("Internal error", { status: 500 });
   }
 }
@@ -49,6 +50,7 @@ export async function GET(req: Request) {
 
     const nextCursor = searchParams.get("nextCursor");
     const firstCursor = searchParams.get("firstCursor");
+    const categoryId = searchParams.get("categoryId");
 
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -58,8 +60,12 @@ export async function GET(req: Request) {
 
     if (nextCursor) {
       products = await db.product.findMany({
+        where: {
+          OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
+        },
         take: MESSAGE_BATCH,
         skip: 1,
+
         cursor: {
           id: nextCursor,
         },
@@ -69,7 +75,11 @@ export async function GET(req: Request) {
       });
     } else if (firstCursor) {
       products = await db.product.findMany({
+        where: {
+          OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
+        },
         take: MESSAGE_BATCH,
+
         cursor: {
           id: firstCursor,
         },
@@ -79,6 +89,9 @@ export async function GET(req: Request) {
       });
     } else {
       products = await db.product.findMany({
+        where: {
+          OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
+        },
         take: MESSAGE_BATCH,
         orderBy: {
           createdAt: "desc",
@@ -92,13 +105,17 @@ export async function GET(req: Request) {
     if (products.length === MESSAGE_BATCH) {
       nextCursorOutput = products[MESSAGE_BATCH - 1].id;
     }
-    
+
     if (products.length > 0) {
       firstCursorOutput = firstCursor != null ? firstCursor : products[0].id;
     }
 
-    const total = await db.product.count();
-    if(total <= MESSAGE_BATCH){
+    const total = await db.product.count({
+      where: {
+        OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
+      },
+    });
+    if (total <= MESSAGE_BATCH) {
       nextCursorOutput = null;
       firstCursorOutput = null;
     }

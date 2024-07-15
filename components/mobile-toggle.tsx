@@ -7,80 +7,14 @@ import { AccordionToggle } from "./accordion-toggle";
 import { MenuHeader } from "./menu/menu-header";
 import { MenuItems } from "./menu/menu-items";
 import { cn } from "@/lib/utils";
-const listMenu = [
-  {
-    id: 1,
-    menuHeader: "Phụ kiện chụp ảnh",
-    listChild: [
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-    ],
-  },
-  {
-    id: 2,
-    menuHeader: "Đồ trang trí",
-    listChild: [
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-    ],
-  },
-  {
-    id: 3,
-    menuHeader: "Blog",
-    listChild: [
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-      {
-        name: "Phông nền chụp ảnh",
-        url: "/",
-      },
-    ],
-  },
-];
+import { useMenuStore } from "@/hook/use-menu-store";
 interface MobileToggleProps {
   isScrolled: boolean
 }
 export const MobileToggle = ({
   isScrolled
 }: MobileToggleProps) => {
+  const {data,setData} = useMenuStore();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -90,8 +24,8 @@ export const MobileToggle = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-0 flex gap-0 ">
         <div className="flex flex-col w-full mt-9">
-          <NavigationInput />
-          {listMenu.map((t, index) => (
+          <NavigationInput placehodler="Searching..."/>
+          {data.map((t, index) => (
             <AccordionToggle
               key={index}
               menuHeader={<MenuHeader nameHeader={t.menuHeader} />}

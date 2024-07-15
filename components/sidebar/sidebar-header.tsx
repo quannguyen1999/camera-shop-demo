@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import qs from "query-string";
 import axios, { AxiosResponse } from "axios";
 import { URL_API_CATEGORY, URL_API_PRODUCT } from "@/constants/url-constant";
+import { useMenuStore } from "@/hook/use-menu-store";
 
 interface NavigationSidebarProps {
     isScrolled: boolean
@@ -13,12 +14,13 @@ interface NavigationSidebarProps {
 const SideBarHeader = ({
     isScrolled
 }: NavigationSidebarProps) => {
-  const [menu, setMenu] = useState<any[]>([]);
+  const {data,setData} = useMenuStore();
   useEffect(()=>{
     const getAllCategories =  async () => {
       const url = qs.stringifyUrl({ url: `${URL_API_CATEGORY}/get-all-menu` });
       const datas = await axios.get(url);
-      setMenu(datas.data.items);
+    
+      setData(datas.data.items);
     }
 
     getAllCategories();
@@ -26,7 +28,7 @@ const SideBarHeader = ({
   return (
     <div className={cn("hidden gap-1  h-24 w-full px-8  text-white md:grid sm:grid-cols-1 md:grid-cols-1 lg:grid-col-1 xl:grid-cols-2", isScrolled ? 'bg-gray-50 shadow-2xl text-black hover:text-black' : '')}>
       <div className="flex flex-row gap-5 text-sm md:justify-center lg:justify-center  xl:justify-start ">
-        {menu.map((t) => (
+        {data.map((t) => (
           <MenuBody
             key={t.id}
             nameHeader={t.menuHeader}

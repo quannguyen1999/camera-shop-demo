@@ -17,6 +17,7 @@ interface NavigationSidebarProps {
 const NavigationSidebar = ({
   isScrolled
 }: NavigationSidebarProps) => {
+  
   const router = useRouter()
   const navigateToMainPage = () => {
     router.push("/");
@@ -25,7 +26,7 @@ const NavigationSidebar = ({
     router.push("/admin");
   }
   return (
-    <div className={cn("px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
+    <div className={cn(" shadow-2xl px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
       <div className="flex md:hidden items-center">
         <MobileToggle isScrolled={isScrolled}/>
       </div>

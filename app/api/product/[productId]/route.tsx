@@ -20,19 +20,17 @@ export async function GET(
     });
 
     let images = null;
-    if(products?.id != null){
+    if (products?.id != null) {
       images = await db.image.findMany({
         where: {
-          productId: products.id
-        }
-      })
+          productId: products.id,
+        },
+      });
     }
-
-   
 
     return NextResponse.json({
       products,
-      images
+      images,
     });
   } catch (error) {
     console.log("[MESSAGE_GET]", error);
@@ -58,7 +56,7 @@ export async function DELETE(
     });
 
     return NextResponse.json({
-      status: 'success'
+      status: "success",
     });
   } catch (error) {
     console.log("[MESSAGE_GET]", error);
@@ -72,7 +70,8 @@ export async function PATCH(
 ) {
   try {
     const profile = await currentProfile();
-    const { imageUrl, content, quantity, price, categoryId, images, name } = await req.json();
+    const { imageUrl, content, quantity, price, categoryId, images, name } =
+      await req.json();
 
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -88,29 +87,29 @@ export async function PATCH(
         quantity: quantity,
         price: price,
         categoryId: categoryId,
-        name: name       
+        name: name,
       },
     });
 
-    images?.map(async (t: any)=>{
-      if(t.id != null){
+    images?.map(async (t: any) => {
+      if (t.id != null && t.id.length > 0) {
         await db.image.update({
           where: {
             id: t.id,
           },
           data: {
-            imageUrl: t.imageUrl  
+            imageUrl: t.imageUrl,
           },
-      })
-      }else{
+        });
+      } else {
         await db.image.create({
           data: {
             imageUrl: t.imageUrl,
-            productId: params.productId
-          }
-      })
+            productId: params.productId,
+          },
+        });
       }
-    })
+    });
 
     return NextResponse.json({
       productUpdate,
