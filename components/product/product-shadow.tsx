@@ -62,7 +62,7 @@ export const ProductShadow = ({
   };
 
   return (
-    <div className="relative shadow-xl flex flex-col flex-1 text-center">
+    <div className="group relative shadow-xl flex flex-col flex-1 text-center">
       {imageUrl == null || imageUrl.trim().length <= 0 ? (
         <PilcrowSquare />
       ) : (
@@ -71,14 +71,14 @@ export const ProductShadow = ({
           width={600}
           height={600}
           alt="hehe"
-          className="h-52"
+          className="h-52 scale-90 group-hover:scale-100 transition-all"
         />
       )}
 
       <p>{content}</p>
       <p>{price}</p>
 
-      <div className="flex hover:bg-gray-800 flex-col text-center items-center justify-center absolute w-full h-full bg-gray bg-opacity-40 hover:bg-opacity-20 transition-all cursor-pointer">
+      <div className="flex  hover:bg-gray-800  flex-col text-center items-center justify-center absolute w-full h-full bg-gray bg-opacity-40 hover:bg-opacity-20 transition-all cursor-pointer">
         <div className="w-full h-full bg-transparent opacity-0 hover:opacity-100 flex hover:flex-row gap-2 items-center justify-center text-white">
           <div className="relative">
             <ActionTooltip side="top" label="Like">

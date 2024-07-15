@@ -6,6 +6,10 @@ import { Info } from "lucide-react";
 import NavigationInput from "@/components/navigation/navigation-input";
 import TablePage from "@/modal/table/table-page";
 import { columns } from "@/modal/table/category/columns";
+import { useEffect } from "react";
+import { currentProfile } from "@/lib/current-profile";
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { useSession } from "@clerk/nextjs";
 
 export const CategoryPage = () => {
   const { onOpen, setIsRefresh } = useModal();
@@ -13,6 +17,15 @@ export const CategoryPage = () => {
     setIsRefresh(true);
     setTimeout(() => setIsRefresh(false), 1000);
   };
+
+    useEffect(() => {
+      const ss = () => {
+        const hehe = currentProfile();
+      }
+     ss();
+      // const role = session?.user?.public_metadata?.role;
+  })
+  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row items-end justify-end px-5 gap-5  pt-5">

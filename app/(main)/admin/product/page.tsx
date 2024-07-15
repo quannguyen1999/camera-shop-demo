@@ -14,6 +14,7 @@ export const ProductPage = () => {
     setIsRefresh(true);
     setTimeout(() => setIsRefresh(false), 1000);
   };
+  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row items-end justify-end px-5 gap-5  pt-5">

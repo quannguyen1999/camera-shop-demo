@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-const MESSAGE_BATCH = 5;
+const MESSAGE_BATCH = 1;
 
 import { currentProfile } from "@/lib/current-profile";
 import { Category, Product } from "@prisma/client";

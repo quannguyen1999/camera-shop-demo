@@ -43,7 +43,7 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
         <div className="justify-start flex flex-row gap-2">
           <CategoryHeader category={values} />
         </div>
-        <div className="items-center justify-start md:justify-end flex flex-row gap-2">
+        {/* <div className="items-center justify-start md:justify-end flex flex-row gap-2">
           <RatioGroupItem
             onSetValue={(value: any) => setMenuParent(value)}
             content={menuParent}
@@ -59,7 +59,7 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
               },
             ]}
           />
-        </div>
+        </div> */}
       </div>
       <div className="flex-1 flex flex-row">
         <div className="">

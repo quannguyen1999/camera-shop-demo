@@ -13,18 +13,12 @@ const data = [
     content:
       "Khách thanh toán tiền mặt khi nhận hàng. Phí giao hàng khách vui lòng xem trong mục:",
     icon: <Plus />,
-  },
-  {
-    id: "momo",
-    value: "Quét Mã MoMo Quét Mã MoMo",
-    content: "Hãy mở App Momo lên và nhấn Đặt Hàng để quét mã thanh toán",
-    icon: <Plus />,
-  },
+  }
 ];
 
-export const CartBank = () => {
+export const CartBankRefer = () => {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single"  className="w-full">
       {data.map((t, index) => (
         <AccordionItem key={t.id} value={`item-` +  t.id}>
           <AccordionTrigger>

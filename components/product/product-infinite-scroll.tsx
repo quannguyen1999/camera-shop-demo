@@ -3,6 +3,7 @@ import { ProductShadow } from "./product-shadow";
 import { URL_API_CATEGORY } from "@/constants/url-constant";
 import { Fragment } from "react";
 import { BadgeX, ShoppingCart } from "lucide-react";
+import { LoadingItem } from "../loading-item";
 interface ProductBodyProps {
   categoryId: string;
 }
@@ -17,6 +18,7 @@ export const ProductInfiniteScroll = ({ categoryId }: ProductBodyProps) => {
 
   return (
     <>
+      {status == "pending" && <LoadingItem />}
       {data == undefined ||
         (data?.pages[0].items?.length <= 0 && (
           <div className=" w-full flex flex-col justify-center items-center gap-5">
@@ -24,7 +26,7 @@ export const ProductInfiniteScroll = ({ categoryId }: ProductBodyProps) => {
             <p>Không có sản phẩm nào</p>
           </div>
         ))}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5  row-span-3 gap-10 px-2 ">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5  row-span-3 gap-10 px-2 ">
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
             {group.items.map((t: any) => {
@@ -42,6 +44,12 @@ export const ProductInfiniteScroll = ({ categoryId }: ProductBodyProps) => {
           </Fragment>
         ))}
       </div>
+      {isFetchingNextPage && <div className="pt-10 flex items-center justify-center" ><LoadingItem /></div>}
+      {hasNextPage && (
+        <div className="pt-10 flex items-center justify-center hover:text-amber-700 cursor-pointer" onClick={() => fetchNextPage()}>
+          Xem thêm sản phẩm...{" "}
+        </div>
+      )}
     </>
   );
 };

@@ -1,11 +1,12 @@
+import { useOrderStore } from "@/hook/use-order-store";
 import { BadItem } from "../bag/bag-item";
 
 import { Button } from "../ui/button";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { CartBank } from "./cart-bank";
+import { CartBankRefer } from "./cart-bank";
 
 export const CartInfo = () => {
-  const data = [1, 2, 3, 4];
+  const { data } = useOrderStore();
   return (
     <div className="flex flex-col border-2 border-amber-700 p-4 gap-7">
       <p className="font-bold text-2xl text-amber-700">Đơn hàng của bạn</p>
@@ -14,14 +15,14 @@ export const CartInfo = () => {
         <div className="flex-1 items-end justify-end flex">Tạm Tính</div>
       </div>
       <div className="flex flex-col border-t-2 pt-2 border-gray-300">
-        {data.map((t) => (
+        {data.products?.map((t) => (
           <BadItem
-            key={t}
-            id={t.toString()}
-            url="logo.svg"
-            nameProduct="Kính Camera"
-            totalItem={6}
-            totalPrice={640000}
+            key={t.id}
+            id={t.id}
+            url={t.imageUrl}
+            nameProduct={t.name}
+            totalItem={t.quantity}
+            totalPrice={t.price}
             detailSize="Kích thước 12 x 34 x67"
           />
         ))}
@@ -34,13 +35,13 @@ export const CartInfo = () => {
         </div>
       </div>
       <div className="border-t-2 pt-2 border-gray-300">
-      <CartBank />
+        <CartBankRefer />
       </div>
-     
+
       <div className="font-bold  text-xl flex flex-row border-t-2 pt-2 border-gray-300">
         <div>Tổng</div>
         <div className="flex flex-1 items-end justify-end text-end">
-          30,000₫
+          {data.totalMoney}
         </div>
       </div>
       <div className="flex items-center justify-center border-t-2 pt-2 border-gray-300">
@@ -52,7 +53,6 @@ export const CartInfo = () => {
           mà bạn cung cấp
         </p>
       </div>
-       
     </div>
   );
 };

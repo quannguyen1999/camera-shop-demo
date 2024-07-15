@@ -111,11 +111,11 @@ export const ProductIdPage = ({ params }: ProductIdPageProps) => {
           <CategoryHeader category={values} />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="col-span-1">
           <CarouselProduct images={images} />
         </div>
-        <div className="col-span-1 flex flex-col gap-4">
+        <div className="col-span-2 flex flex-col gap-4">
           <ProductDetail
             id={product?.categoryId}
             categoryId={product?.categoryId}
