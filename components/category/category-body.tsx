@@ -7,65 +7,6 @@ import qs from "query-string";
 import { URL_API_CATEGORY } from "@/constants/url-constant";
 import axios, { AxiosResponse } from "axios";
 import { LoadingItem } from "../loading-item";
-
-const dataCategoryFake = [
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "BÌNH HOA",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "TRÁI CÂY GIẢ",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "BÁNH GIẢ, KEM GIẢ",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "ĐÁ GIẢ",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "HOA LÁ GIẢ",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "CHIM BƯỚM",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "THIỆP",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "CHỮ, SỐ",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "KHỐI HÌNH HỌC",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "VÃI NỀN",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "TRÀ ĐẠO",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "LY CHEN ĐĨA",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "MUỖNG NĨA DAO",
-  },
-  {
-    imageUrl: "/images/dashboard_1.PNG",
-    content: "KHAY, NHỚT",
-  },
-];
 export const CategoryBody = () => {
   const [loading, setLoading] = useState(false);
   const [datas, setDatas] = useState<any>([]);

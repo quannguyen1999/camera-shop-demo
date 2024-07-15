@@ -38,7 +38,7 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
     const getProfile = async () => {
       const datas = await axios.get(URL_API_PROFILE);
 
-      if (datas.data.profile.role != "ADMIN") {
+      if (datas.data.profile != null && datas.data.profile.role != "ADMIN") {
         setIsAdmin(true);
       }
     };

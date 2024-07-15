@@ -29,7 +29,7 @@ const items = [
       </>
     }
     key={1}
-    imageUrl="/images/dashboard_1.PNG"
+    imageUrl="https://utfs.io/f/999a91d1-b8d0-40cd-84da-30dd5b260a1a-wlvu0q.png"
   />,
   <ImageShadow
     body={
@@ -49,7 +49,7 @@ const items = [
       </>
     }
     key={2}
-    imageUrl="/images/dashboard_2.PNG"
+    imageUrl="https://utfs.io/f/e2489f97-e7cb-41ef-9fd5-8f6ca91696ad-wlvu0p.png"
   />,
 ];
 export const DashboardCarousel = () => {
