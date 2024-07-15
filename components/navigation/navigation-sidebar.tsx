@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { User } from "lucide-react";
 import { useScrollStore } from "@/hook/use-scroll-store";
+import { URL_ADMIN_CATEGORY, URL_DASHBOARD } from "@/constants/url-constant";
 
 interface NavigationSidebarProps {
   isScrolled: boolean
@@ -21,10 +22,10 @@ const NavigationSidebar = ({
   const { isInMainPage } = useScrollStore();
   const router = useRouter()
   const navigateToMainPage = () => {
-    router.push("/");
+    router.push(URL_DASHBOARD);
   }
   const navigateToAdminPage = () => {
-    router.push("/admin");
+    router.push(URL_ADMIN_CATEGORY);
   }
   return (
     <div className={cn("md:shadow-none px-12 pt-7 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent', !isInMainPage && 'shadow-2xl')}>

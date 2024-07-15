@@ -157,18 +157,18 @@ export const AddCategoryModal = () => {
           </DialogTitle>
 
           <div className="flex flex-col gap-3">
-            <RatioGroupItem
-              onSetValue={(value: any) => setMenuParent(value)}
-              content={menuParent}
-              menu={[
-                {
-                  value: "Phông nền chụp ảnh",
-                },
-                {
-                  value: "Phụ kiện chụp Food",
-                },
-              ]}
-            />
+              <RatioGroupItem
+                onSetValue={(value: any) => setMenuParent(value)}
+                content={menuParent}
+                menu={[
+                  {
+                    value: "Phông nền chụp ảnh",
+                  },
+                  {
+                    value: "Phụ kiện chụp Food",
+                  },
+                ]}
+              />
             <InputItem
               onSetValue={(value: any) => setMenuChild(value)}
               content={menuChild}

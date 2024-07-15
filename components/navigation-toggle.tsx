@@ -24,7 +24,7 @@ export const NavigationToggle = ({header, body, colorTextHeader}: BadNavigationP
           <NavigationMenuContent className="left-0">
             <ul className="grid gap-3 w-[220px]">
               <li className="row-span-3">
-              {body}
+                {body}
               </li>
             </ul>
           </NavigationMenuContent>

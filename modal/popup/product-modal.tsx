@@ -249,10 +249,11 @@ export const AddProductModal = () => {
 
         <DialogHeader className="pt-5 px-6">
           <DialogTitle className="text-base  dark:text-white">
-            {type == ADD_CONSTANT ? "Thêm Sản phẩm" : "Sữa Sản phẩm"}
+            {type == ADD_CONSTANT ? "Thêm Sản phẩm" : "Sửa Sản phẩm"}
           </DialogTitle>
           <div className="flex flex-col p-4 gap-3 h-96 overflow-auto ">
             <div className="flex flex-row gap-2">
+           
               <ComboboxItem
                 currentValue={categoryId}
                 onChangeValue={(value) => onChangeValueComboBox(value)}

@@ -7,6 +7,7 @@ import { FooterBody } from "@/components/footer/footer-body";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useScrollStore } from "@/hook/use-scroll-store";
+import { QueryProvider } from "@/provider/query-provider";
 
 export default function RootLayout({
   children,
@@ -37,8 +38,9 @@ export default function RootLayout({
         <NavigationSidebar isScrolled={!isInMainPage ? true : isScrolled} />
         <SideBarHeader isScrolled={!isInMainPage ? true : isScrolled} />
       </div>
-
-      <div className="flex-1">{children}</div>
+      <QueryProvider>
+        <div className="flex-1">{children}</div>
+      </QueryProvider>
       <FooterBody />
     </div>
   );

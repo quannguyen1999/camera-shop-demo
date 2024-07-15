@@ -26,7 +26,6 @@ export default function TablePage({urlApi, columns}: TablePageProps) {
       setFirstCursor(datas.data.firstCursor);
     };
 
-    console.log("call")
     setLoading(true);
     getData();
     setLoading(false);

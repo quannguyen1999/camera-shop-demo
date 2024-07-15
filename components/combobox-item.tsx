@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ComboBoxProps {
   datas: any[];
@@ -30,7 +30,9 @@ interface ComboBoxProps {
 export const ComboboxItem = ({ datas, label, placeholder, currentValue, onChangeValue }: ComboBoxProps) => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(currentValue);
-
+  useEffect(()=> {
+    setId(currentValue)
+  }, [currentValue]);
   return (
     <div className="flex flex-col gap-2">
       <div>
@@ -44,7 +46,7 @@ export const ComboboxItem = ({ datas, label, placeholder, currentValue, onChange
             aria-expanded={open}
             className="w-full justify-between focus-visible:ring-0 focus-visible:ring-offset-0"
           >
-            {id
+                        {id
               ? datas.find((data) => data.id === id)?.value
               : "Tìm kiếm..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

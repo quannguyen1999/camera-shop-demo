@@ -20,7 +20,6 @@ interface RatioGroupItemProps {
 export const RatioGroupItem = ({ menu, onSetValue, content }: RatioGroupItemProps) => {
   const [position, setPosition] = React.useState(content);
   useEffect(()=> {
-    console.log(content)
     setPosition(content)
   }, [content])
 
