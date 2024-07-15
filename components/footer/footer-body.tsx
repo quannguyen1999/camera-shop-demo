@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Book, Facebook, Instagram, Ticket } from "lucide-react";
-import { Dancing_Script } from "next/font/google";
 import Image from "next/image";
 export const FooterBody = () => {
   return (
@@ -16,7 +15,7 @@ export const FooterBody = () => {
       </div>
       <div className={cn(" flex flex-col items-center justify-center",)}>
         <div className="uppercase">
-          <p>QUEENIE'S</p>
+          <p>QUEENIE&apos;S</p>
           <p className="text-xs ">Phụ Kiện Xinh</p>
         </div>
       </div>

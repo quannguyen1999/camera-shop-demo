@@ -1,7 +1,5 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { UploadThingError } from "uploadthing/server";
 import { auth as authX } from "@clerk/nextjs/server";
-import { metadata } from "@/app/layout";
 
 const f = createUploadthing();
 

@@ -107,7 +107,7 @@ export const columns: ColumnDef<Category>[] = [
       const { onOpen } = useModal();
       return (
         <div
-          onClick={() => onOpen("editCategory", row.original.id)}
+          onClick={() => onOpen("editCategory", row.original.id, "")}
           className="cursor-pointer font-bold text-blue-600"
         >
           Edit

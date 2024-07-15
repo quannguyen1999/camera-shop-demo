@@ -33,8 +33,8 @@ const CarouselProduct = ({ images }: CarouselProductProsp) => {
           }
         }}
       >
-        {images.map((t) => (
-          <div className="w-full h-full">
+        {images.map((t, index) => (
+          <div key={index} className="w-full h-full">
             <Image
               className="w-full h-full"
               height={300}
@@ -56,8 +56,8 @@ const CarouselProduct = ({ images }: CarouselProductProsp) => {
         swipeToSlide={true}
         focusOnSelect={true}
       >
-        {images.map((t) => (
-          <div className="w-full h-full">
+        {images.map((t, index) => (
+          <div key={index} className="w-full h-full">
             <Image height={200} width={200} alt="hehe" src={t.imageUrl} />
           </div>
         ))}

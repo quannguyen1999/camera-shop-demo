@@ -14,7 +14,7 @@ interface CatgegoryHeaderPageProps {
     categoryId: string;
   };
 }
-export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
+const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
   const [menuParent, setMenuParent] = useState("");
   const values = [
     {

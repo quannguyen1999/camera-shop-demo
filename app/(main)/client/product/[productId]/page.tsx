@@ -39,7 +39,7 @@ interface ProductDetailProps {
   name?: string;
 }
 
-export const ProductIdPage = ({ params }: ProductIdPageProps) => {
+const ProductIdPage = ({ params }: ProductIdPageProps) => {
   const values = [
     {
       value: "Trang chủ",

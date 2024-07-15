@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { URL_DASHBOARD } from "@/constants/url-constant";
 
-export const CartPage = () => {
+const CartPage = () => {
   const pathName = usePathname();
   const {setIsMainPage} = useScrollStore();
   useEffect(() => {
