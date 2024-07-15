@@ -10,7 +10,7 @@ const items = [
   <div key='1' className=" flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_1.png"
+        src="https://utfs.io/f/999a91d1-b8d0-40cd-84da-30dd5b260a1a-wlvu0q.png"
         alt="hehe"
         width={100}
         height={100}
@@ -21,7 +21,7 @@ const items = [
   <div key='2' className="flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_2.png"
+        src="https://utfs.io/f/e2489f97-e7cb-41ef-9fd5-8f6ca91696ad-wlvu0p.png"
         alt="hehe"
         width={100}
         height={100}
@@ -32,7 +32,7 @@ const items = [
   <div key='3'  className=" flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_1.png"
+        src="https://utfs.io/f/999a91d1-b8d0-40cd-84da-30dd5b260a1a-wlvu0q.png"
         alt="hehe"
         width={100}
         height={100}
@@ -43,7 +43,7 @@ const items = [
   <div key='4'  className="flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_2.png"
+        src="https://utfs.io/f/e2489f97-e7cb-41ef-9fd5-8f6ca91696ad-wlvu0p.png"
         alt="hehe"
         width={100}
         height={100}
@@ -54,7 +54,7 @@ const items = [
    <div key='5'  className="flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_1.png"
+        src="https://utfs.io/f/999a91d1-b8d0-40cd-84da-30dd5b260a1a-wlvu0q.png"
         alt="hehe"
         width={100}
         height={100}
@@ -65,7 +65,7 @@ const items = [
   <div key='6'  className="flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_2.png"
+        src="https://utfs.io/f/e2489f97-e7cb-41ef-9fd5-8f6ca91696ad-wlvu0p.png"
         alt="hehe"
         width={100}
         height={100}
@@ -76,7 +76,7 @@ const items = [
   <div key='7'  className="flex h-full text-center justify-center items-center">
     <div className="items-center h-32 justify-center text-center flex">
       <Image
-        src="/images/dashboard_1.png"
+        src="https://utfs.io/f/999a91d1-b8d0-40cd-84da-30dd5b260a1a-wlvu0q.png"
         alt="hehe"
         width={100}
         height={100}
