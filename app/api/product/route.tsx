@@ -60,9 +60,7 @@ export async function GET(req: Request) {
 
     if (nextCursor) {
       products = await db.product.findMany({
-        where: {
-          OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
-        },
+        where: categoryId != null ? { categoryId: categoryId } : {},
         take: MESSAGE_BATCH,
         skip: 1,
 
@@ -75,9 +73,7 @@ export async function GET(req: Request) {
       });
     } else if (firstCursor) {
       products = await db.product.findMany({
-        where: {
-          OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
-        },
+        where: categoryId != null ? { categoryId: categoryId } : {},
         take: MESSAGE_BATCH,
 
         cursor: {
@@ -89,9 +85,7 @@ export async function GET(req: Request) {
       });
     } else {
       products = await db.product.findMany({
-        where: {
-          OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
-        },
+        where: categoryId != null ? { categoryId: categoryId } : {},
         take: MESSAGE_BATCH,
         orderBy: {
           createdAt: "desc",
@@ -111,9 +105,7 @@ export async function GET(req: Request) {
     }
 
     const total = await db.product.count({
-      where: {
-        OR: [{ categoryId: categoryId != null ? categoryId : undefined }],
-      },
+      where: categoryId != null ? { categoryId: categoryId } : {},
     });
     if (total <= MESSAGE_BATCH) {
       nextCursorOutput = null;

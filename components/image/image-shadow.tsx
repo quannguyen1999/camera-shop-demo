@@ -16,7 +16,7 @@ export const ImageShadow = ({
   return (
     <div
       className={cn(
-        "relative w-full h-full scale-105 transition-all",
+        "relative w-full h-full transition-all bg-repeat",
         isScale && 'hover:scale-110'
       )}
       style={{ 

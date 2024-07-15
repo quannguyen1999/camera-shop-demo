@@ -26,18 +26,18 @@ export const CarouselToggle = ({
     Autoplay({ delay: deplay, stopOnInteraction: true })
   );
   return (
-    <Carousel className="w-full" plugins={[plugin.current]}>
+    <Carousel className="w-full relative" plugins={[plugin.current]}>
       <CarouselContent>
         {items.map((t, index) => (
           <CarouselItem
             key={index}
-            className={cn(
+            className={cn("",
               isMainScreenDashboard
                 ? "flex h-screen w-screen"
-                : "pl-1 md:basis-3/12 lg:basis-3/12"
+                : "md:basis-3/12 lg:basis-3/12"
             )}
           >
-            <div className="p-1 flex-1 ">{t}</div>
+            <div className="flex-1">{t}</div>
           </CarouselItem>
         ))}
       </CarouselContent>

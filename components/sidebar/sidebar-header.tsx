@@ -26,8 +26,8 @@ const SideBarHeader = ({
     getAllCategories();
   }, [])
   return (
-    <div className={cn("hidden gap-1  h-24 w-full px-8  text-white md:grid sm:grid-cols-1 md:grid-cols-1 lg:grid-col-1 xl:grid-cols-2", isScrolled ? 'bg-gray-50 shadow-2xl text-black hover:text-black' : '')}>
-      <div className="flex flex-row gap-5 text-sm md:justify-center lg:justify-center  xl:justify-start ">
+    <div className={cn("hidden px-10 gap-1 h-16 w-full text-white md:grid sm:grid-cols-1 md:grid-cols-1 lg:grid-col-1 xl:grid-cols-2", isScrolled ? 'bg-gray-50 shadow-2xl text-black hover:text-black' : '')}>
+      <div className="flex flex-row gap-5 text-sm md:justify-center lg:justify-center pt-5  xl:justify-start ">
         {data.map((t) => (
           <MenuBody
             key={t.id}

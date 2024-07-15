@@ -36,7 +36,7 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
   }, [pathName, setIsMainPage]);
 
   return (
-    <div className="flex flex-col px-20 pt-12">
+    <div className="flex flex-col px-20 pt-1">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 row-span-3  pt-40">
         <div className="justify-start flex flex-row gap-2">
           <CategoryHeader category={values} />
@@ -59,11 +59,11 @@ export const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
       </div>
       <div className="flex-1 flex flex-row">
         <div className="">
-          <CategorySection />
+          <CategorySection categoryId={params.categoryId}/>
         </div>
 
         <div className="flex-1 pt-12">
-          <ProductBody />
+          {/* <ProductBody /> */}
         </div>
       </div>
     </div>

@@ -105,8 +105,8 @@ export const ProductIdPage = ({ params }: ProductIdPageProps) => {
     getById();
   }, [pathName]);
   return (
-    <div className="flex flex-col px-10 md:px-40 pt-12 gap-5">
-      <div className=" gap-2 row-span-3  pt-40">
+    <div className="flex flex-col px-10 md:px-40 md:pt-12 gap-5">
+      <div className=" gap-2 row-span-3 md:pt-28 pt-32">
         <div className="justify-start flex flex-row gap-2">
           <CategoryHeader category={values} />
         </div>

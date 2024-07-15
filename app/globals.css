@@ -7,6 +7,34 @@ body,
 :root {
   height: 100%;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 17px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--tertiary);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -79,7 +107,6 @@ body,
     @apply bg-background text-foreground;
   }
 }
-
 
 /* styles.css or any CSS file */
 .custom-background {

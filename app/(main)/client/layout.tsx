@@ -27,10 +27,10 @@ export default function RootLayout({
   }, []);
 
   return (
-    <div className="flex flex-col w-screen">
+    <div className="flex flex-col">
       <div
         className={cn(
-          "fixed z-10 w-full h-24 top-0 left-0 bg-transparent",
+          "fixed z-10 w-full md:h-16 h-28 top-0 left-0 bg-transparent",
           isScrolled && "shadow-xl"
         )}
       >

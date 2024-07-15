@@ -14,7 +14,7 @@ const items = [
   <ImageShadow
     body={
       <>
-        <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
+        <div className={cn(" flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
           <p>Đạo cụ</p>
           <p>Phồng nền, đồ trang trí,...</p>
         </div>

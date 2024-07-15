@@ -2,7 +2,7 @@ import { ChevronRight, Plus } from "lucide-react";
 
 export const ProductSaleOff = () => {
   return (
-    <div className="w-full rounded-md gap-5 h-full flex flex-col border-2 p-5 border-red-600 bg-gray-200">
+    <div className="w-full rounded-md gap-5 flex flex-col border-2 p-5 border-red-600 bg-gray-200">
       <div className="font-bold text-xl">
         <p>Phiếu Ưu Đãi</p>
       </div>

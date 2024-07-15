@@ -26,6 +26,7 @@ export default function TablePage({urlApi, columns}: TablePageProps) {
       setFirstCursor(datas.data.firstCursor);
     };
 
+    console.log("call")
     setLoading(true);
     getData();
     setLoading(false);
@@ -56,7 +57,7 @@ export default function TablePage({urlApi, columns}: TablePageProps) {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto  ">
       {loading ? (
         <LoadingItem />
       ) : (

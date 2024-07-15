@@ -68,7 +68,10 @@ const listMenu = [
     ],
   },
 ];
-export const CategorySection = () => {
+interface CategorySection {
+  categoryId: string
+}
+export const CategorySection = ({categoryId}: CategorySection) => {
   return (
     <div className="flex-col hidden md:flex">
       <div className="relative h-40 w-40">

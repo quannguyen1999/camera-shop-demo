@@ -1,5 +1,5 @@
 "use client";
-import { InfScroll } from "@/components/InfScroll";
+import { InfScroll } from "@/components/inf-scroll";
 import { CategoryBody } from "@/components/category/category-body";
 import { DashboardCarousel } from "@/components/dashboard/dashboard-carousel";
 import { ImageShadow } from "@/components/image/image-shadow";
@@ -59,7 +59,7 @@ const DashboardPage = () => {
       <div className="px-4">
         <ProductBody data={data}/>
       </div>
-      <ImageShadow
+      {/* <ImageShadow
         body={
           <div className="flex h-96">
             <p>.</p>
@@ -67,7 +67,7 @@ const DashboardPage = () => {
         }
         key={2}
         imageUrl={`bg-[url('/images/${DASHBOARD_2}')]`}
-      />
+      /> */}
     </div>
   );
 };

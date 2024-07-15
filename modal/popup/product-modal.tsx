@@ -237,8 +237,8 @@ export const AddProductModal = () => {
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent
         className="bg-white text-black 
-      p-0 overflow-hidden w-full transition-all
-      dark:bg-gray-800
+      p-0  w-full transition-all
+      dark:bg-gray-800 
       "
       >
         {loading && (
@@ -251,7 +251,7 @@ export const AddProductModal = () => {
           <DialogTitle className="text-base  dark:text-white">
             {type == ADD_CONSTANT ? "Thêm Sản phẩm" : "Sữa Sản phẩm"}
           </DialogTitle>
-          <div className="flex flex-col p-4 gap-3">
+          <div className="flex flex-col p-4 gap-3 h-96 overflow-auto ">
             <div className="flex flex-row gap-2">
               <ComboboxItem
                 currentValue={categoryId}

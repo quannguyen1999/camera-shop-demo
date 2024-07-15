@@ -9,6 +9,7 @@ import { Dancing_Script } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { User } from "lucide-react";
+import { useScrollStore } from "@/hook/use-scroll-store";
 
 interface NavigationSidebarProps {
   isScrolled: boolean
@@ -17,7 +18,7 @@ interface NavigationSidebarProps {
 const NavigationSidebar = ({
   isScrolled
 }: NavigationSidebarProps) => {
-  
+  const { isInMainPage } = useScrollStore();
   const router = useRouter()
   const navigateToMainPage = () => {
     router.push("/");
@@ -26,7 +27,7 @@ const NavigationSidebar = ({
     router.push("/admin");
   }
   return (
-    <div className={cn(" shadow-2xl px-12 pt-4 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent')}>
+    <div className={cn("md:shadow-none px-12 pt-7 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all", isScrolled ? 'bg-white' : 'bg-transparent', !isInMainPage && 'shadow-2xl')}>
       <div className="flex md:hidden items-center">
         <MobileToggle isScrolled={isScrolled}/>
       </div>

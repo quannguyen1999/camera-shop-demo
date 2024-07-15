@@ -11,6 +11,7 @@ import {
 import { Button } from "../ui/button";
 import { BagBody } from "./bag-body";
 import { cn } from "@/lib/utils";
+import { useOrderStore } from "@/hook/use-order-store";
 
 interface BadToggleProps {
   isScrolled: boolean
@@ -19,6 +20,7 @@ interface BadToggleProps {
 export const BadToggle = ({
   isScrolled
 }: BadToggleProps) => {
+  const {data} = useOrderStore();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -26,7 +28,7 @@ export const BadToggle = ({
           <div className="relative">
             <ShoppingBag size={15} className={cn(isScrolled ? 'text-black' : "text-white")} />
             <div className="absolute -top-1 -right-1 h-3 w-3 bg-black rounded-full">
-              <p className="text-[8px] text-white ">6</p>
+              <p className="text-[8px] text-white ">{data.products === undefined || data.products.length <= 0 ? '0' :data.products?.map((t) => t.quantity).reduce((t, currentValue = 0) => t + currentValue)}</p>
             </div>
           </div>
         </div>
