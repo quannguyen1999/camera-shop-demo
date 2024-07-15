@@ -7,12 +7,7 @@ export async function GET(
   { params }: { params: { productId: string } }
 ) {
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
+   
     let products = await db.product.findFirst({
       where: {
         id: params.productId,

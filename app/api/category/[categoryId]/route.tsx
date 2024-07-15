@@ -7,11 +7,6 @@ export async function GET(
   { params }: { params: { categoryId: string } }
 ) {
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
 
     let categories = await db.category.findFirst({
       where: {

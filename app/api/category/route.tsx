@@ -30,16 +30,14 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const profile = await currentProfile();
+  
 
     const { searchParams } = new URL(req.url);
 
     const nextCursor = searchParams.get("nextCursor");
     const firstCursor = searchParams.get("firstCursor");
 
-    if (!profile) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+  
 
     let categories: Category[] = [];
 

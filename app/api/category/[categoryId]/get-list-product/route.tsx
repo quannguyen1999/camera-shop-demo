@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-const MESSAGE_BATCH = 1;
+const MESSAGE_BATCH = 10;
 
 import { currentProfile } from "@/lib/current-profile";
 import { Category, Product } from "@prisma/client";
@@ -11,15 +11,9 @@ export async function GET(
   { params }: { params: { categoryId: string } }
 ) {
   try {
-    const profile = await currentProfile();
-
     const { searchParams } = new URL(req.url);
 
     const nextCursor = searchParams.get("nextCursor");
-
-    if (!profile) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
 
     let products: Product[] = [];
 
