@@ -36,7 +36,12 @@ const DashboardPage = () => {
     const getData = async () => {
       setLoadingTopSell(true);
       const url = qs.stringifyUrl({ url: `${URL_API_PRODUCT}/top` });
-      const datas = await axios.get(url);
+      const datas = await axios.get(url, {
+        // query URL without using browser cache
+        headers: {
+          'Cache-Control': 'no-cache'
+        },
+      });
       setData(datas.data.items);
       setLoadingTopSell(false);
     };
@@ -91,4 +96,5 @@ const DashboardPage = () => {
     </>
   );
 };
+
 export default DashboardPage;

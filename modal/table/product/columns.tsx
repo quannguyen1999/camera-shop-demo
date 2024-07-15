@@ -10,7 +10,7 @@ import { ImageOff, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { error } from "console";
-import { formatISOStringToDate } from "@/util/function-util";
+import { formatISOStringToDate, formatNumberToCurrency } from "@/util/function-util";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -40,6 +40,9 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "price",
     header: "Giá",
+    cell: ({ row }) => {
+      return <p>{formatNumberToCurrency(row.original.price)}</p>
+    }
   },
   {
     accessorKey: "createdAt",

@@ -1,4 +1,5 @@
 import { useOrderStore } from "@/hook/use-order-store";
+import { formatNumberToCurrency } from "@/util/function-util";
 import { BadgeX } from "lucide-react";
 import Image from "next/image";
 
@@ -33,7 +34,7 @@ export const BadItem = ({
         <h1>{nameProduct}</h1>
         <span className="text-xs">{detailSize}</span>
         <p className="text-xs">
-          <span>{totalItem}</span> X <span>{totalPrice} đ</span>
+          <span>{totalItem}</span> X <span>{formatNumberToCurrency(totalPrice)} đ</span>
         </p>
       </div>
       <div className="flex  justify-center ">

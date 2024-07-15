@@ -7,6 +7,7 @@ import { ActionTooltip } from "../action-tooltip";
 import { useState } from "react";
 import { useOrderStore } from "@/hook/use-order-store";
 import { toast } from "sonner";
+import { formatNumberToCurrency } from "@/util/function-util";
 
 interface ProductShadowProps {
   imageUrl: string;
@@ -76,10 +77,10 @@ export const ProductShadow = ({
       )}
 
       <p>{content}</p>
-      <p>{price}</p>
+      <p>{formatNumberToCurrency(price)}</p>
 
       <div className="flex  hover:bg-gray-800  flex-col text-center items-center justify-center absolute w-full h-full bg-gray bg-opacity-40 hover:bg-opacity-20 transition-all cursor-pointer">
-        <div className="w-full h-full bg-transparent opacity-0 hover:opacity-100 flex hover:flex-row gap-2 items-center justify-center text-white">
+        <div className=" w-full h-full bg-transparent opacity-0 hover:opacity-100 flex hover:flex-row gap-2 items-center justify-center text-white">
           <div className="relative">
             <ActionTooltip side="top" label="Like">
               <div
@@ -89,7 +90,7 @@ export const ProductShadow = ({
                   like && "bg-red-500 text-white hover:text-white"
                 )}
               >
-                <Heart size={10} />
+                <Heart size={20} />
               </div>
             </ActionTooltip>
           </div>
@@ -99,14 +100,14 @@ export const ProductShadow = ({
                 onClick={() => addToCart()}
                 className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all"
               >
-                <ShoppingCart size={10} />
+                <ShoppingCart size={20} />
               </div>
             </ActionTooltip>
           </div>
           <div className="relative">
             <ActionTooltip side="top" label="Xem chi tiết">
               <div onClick={() => goDetailPage()} className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all">
-                <ArrowRight size={10} />
+                <ArrowRight size={20} />
               </div>
             </ActionTooltip>
           </div>

@@ -10,11 +10,12 @@ import { cn } from "@/lib/utils";
 import { useMenuStore } from "@/hook/use-menu-store";
 interface MobileToggleProps {
   isScrolled: boolean
+  body: React.ReactNode
 }
 export const MobileToggle = ({
-  isScrolled
+  isScrolled,
+  body
 }: MobileToggleProps) => {
-  const {data,setData} = useMenuStore();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -24,14 +25,7 @@ export const MobileToggle = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-0 flex gap-0 ">
         <div className="flex flex-col w-full mt-9">
-          <NavigationInput placehodler="Searching..."/>
-          {data.map((t, index) => (
-            <AccordionToggle
-              key={index}
-              menuHeader={<MenuHeader nameHeader={t.menuHeader} />}
-              menuBody={<MenuItems listChild={t.listChild} />}
-            />
-          ))}
+          {body}
         </div>
       </SheetContent>
     </Sheet>

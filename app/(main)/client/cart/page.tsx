@@ -20,7 +20,7 @@ const CartPage = () => {
   }, [pathName, setIsMainPage]);
 
   return (
-    <div className="flex flex-col pt-52 px-20">
+    <div className="flex flex-col pt-52 px-3 md:px-20">
       <ProductSaleOff />
       <CartDiscount />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

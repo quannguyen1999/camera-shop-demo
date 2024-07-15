@@ -4,6 +4,7 @@ import { BadItem } from "../bag/bag-item";
 import { Button } from "../ui/button";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { CartBankRefer } from "./cart-bank";
+import { formatNumberToCurrency } from "@/util/function-util";
 
 export const CartInfo = () => {
   const { data } = useOrderStore();
@@ -41,7 +42,7 @@ export const CartInfo = () => {
       <div className="font-bold  text-xl flex flex-row border-t-2 pt-2 border-gray-300">
         <div>Tổng</div>
         <div className="flex flex-1 items-end justify-end text-end">
-          {data.totalMoney}
+          {formatNumberToCurrency(data.totalMoney)}
         </div>
       </div>
       <div className="flex items-center justify-center border-t-2 pt-2 border-gray-300">

@@ -65,7 +65,7 @@ export const ComboboxItem = ({ datas, label, placeholder, currentValue, onChange
                     onSelect={(currentValue) => {
                       setId(currentValue === id ? "" : currentValue);
                       setOpen(false);
-                      onChangeValue(id);
+                      onChangeValue(currentValue);
                     }}
                     className="cursor-pointer aria-disabled"
                   >

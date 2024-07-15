@@ -5,6 +5,7 @@ import { BadItem } from "./bag-item";
 import { ScrollArea } from "../ui/scroll-area";
 import { BagFooter } from "./bag-footer";
 import { useOrderStore } from "@/hook/use-order-store";
+import { formatNumberToCurrency } from "@/util/function-util";
 
 export const BagBody = () => {
   const { data } = useOrderStore();
@@ -33,7 +34,7 @@ export const BagBody = () => {
           <div className="flex flex-col p-2 gap-2">
             <div>
               <p className="text-xs font-bold">
-                Tổng số tiền: <b>{data.totalMoney}</b>
+                Tổng số tiền: <b>{formatNumberToCurrency(data.totalMoney)}</b>
               </p>
             </div>
             <BagFooter />

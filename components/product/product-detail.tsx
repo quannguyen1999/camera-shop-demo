@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { useOrderStore } from "@/hook/use-order-store";
 import { toast } from "sonner";
+import { formatNumberToCurrency } from "@/util/function-util";
 // setImageUrl(product.imageUrl);
 // setContent(product.content);
 // setQuantity(product.quantity);
@@ -82,7 +83,7 @@ export const ProductDetail = ({
       </div>
       <div className="pt-5 border-t-2 border-gray-300 font-bold text-lg">
         <p className="">
-          Mức giá : <span>{price} đ</span>
+          Mức giá : <span>{formatNumberToCurrency(price)}</span>
         </p>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">

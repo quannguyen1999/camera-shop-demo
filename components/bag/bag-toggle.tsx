@@ -26,7 +26,7 @@ export const BadToggle = ({
       <SheetTrigger asChild>
         <div className="cursor-pointer">
           <div className="relative">
-            <ShoppingBag size={15} className={cn(isScrolled ? 'text-black' : "text-white")} />
+            <ShoppingBag size={18} className={cn(isScrolled ? 'text-black' : "text-white")} />
             <div className="absolute -top-1 -right-1 h-3 w-3 bg-black rounded-full">
               <p className="text-[8px] text-white ">{data.products === undefined || data.products.length <= 0 ? '0' :data.products?.map((t) => t.quantity).reduce((t, currentValue = 0) => t + currentValue)}</p>
             </div>

@@ -187,8 +187,9 @@ export const AddProductModal = () => {
   };
 
   const validateForm = () => {
+    
     if (
-      !isValid(imageUrl) ||
+      // !isValid(imageUrl) ||
       !isValid(content) ||
       !isValid(quantity) ||
       !isValid(categoryId)
@@ -331,7 +332,7 @@ export const AddProductModal = () => {
             </div>
           </div>
         </DialogHeader>
-        <DialogFooter className="p-5 bg-gray-100 dark:bg-gray-800 px-6 py-4">
+        <DialogFooter className="bg-gray-100 dark:bg-gray-800 px-6 py-4 gap-2">
           <Button
             onClick={() => onClose()}
             type="submit"

@@ -16,15 +16,15 @@ const items = [
       <>
         <div className={cn(" flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
           <p>Đạo cụ</p>
-          <p>Phồng nền, đồ trang trí,...</p>
+          <p>Phông nền, đồ trang trí,...</p>
         </div>
         <div>
-          <Button
+          {/* <Button
             variant="outline"
             className="border-none hover:bg-yellow-800 hover:text-white transition-all"
           >
             Xem ngay{" "}
-          </Button>
+          </Button> */}
         </div>
       </>
     }
@@ -35,16 +35,16 @@ const items = [
     body={
       <>
          <div className={cn("flex flex-col items-center text-white font-bold text-2xl", dancingScript.className)}>
-          <p>Đạo cụ xx ảnh</p>
-          <p>Phồng nền, đồ trang trí,...</p>
+          <p>Dụng cụ</p>
+          <p>Decor,...</p>
         </div>
         <div>
-          <Button
+          {/* <Button
             variant="outline"
             className="border-none hover:bg-yellow-800 hover:text-white transition-all"
           >
             Xem ngay{" "}
-          </Button>
+          </Button> */}
         </div>
       </>
     }

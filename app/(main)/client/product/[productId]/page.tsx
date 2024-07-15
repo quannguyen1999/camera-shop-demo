@@ -18,6 +18,7 @@ import qs from "query-string";
 import { URL_API_CATEGORY } from "@/constants/url-constant";
 import axios, { AxiosResponse } from "axios";
 import { toast } from "sonner";
+import { LoadingItem } from "@/components/loading-item";
 interface ProductIdPageProps {
   params: {
     productId: string;
@@ -86,6 +87,8 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
         setProduct(data.data.products);
         getListProduct(data.data.products.categoryId);
       }
+
+      setLoading(false);
     };
 
     const getListProduct = async (categoryId: string) => {
@@ -113,6 +116,7 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="col-span-1">
+          {loading && <LoadingItem />}
           <CarouselProduct images={images} />
         </div>
         <div className="col-span-2 flex flex-col gap-4">

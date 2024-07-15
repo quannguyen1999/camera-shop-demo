@@ -19,6 +19,10 @@ import { UserButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import qs from "query-string";
 import axios, { AxiosResponse } from "axios";
+import { useMenuStore } from "@/hook/use-menu-store";
+import { AccordionToggle } from "../accordion-toggle";
+import { MenuHeader } from "../menu/menu-header";
+import { MenuItems } from "../menu/menu-items";
 interface NavigationSidebarProps {
   isScrolled: boolean;
 }
@@ -44,7 +48,7 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
     };
     getProfile();
   }, []);
-
+  const { data, setData } = useMenuStore();
   return (
     <div
       className={cn(
@@ -54,7 +58,21 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
       )}
     >
       <div className="flex md:hidden items-center">
-        <MobileToggle isScrolled={isScrolled} />
+        <MobileToggle
+          isScrolled={isScrolled}
+          body={
+            <>
+              <NavigationInput placehodler="Searching..." />
+              {data.map((t, index) => (
+                <AccordionToggle
+                  key={index}
+                  menuHeader={<MenuHeader nameHeader={t.menuHeader} />}
+                  menuBody={<MenuItems listChild={t.listChild} />}
+                />
+              ))}
+            </>
+          }
+        />
       </div>
       <div
         onClick={() => navigateToMainPage()}
