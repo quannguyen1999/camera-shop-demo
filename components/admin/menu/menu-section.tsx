@@ -29,7 +29,7 @@ export const MenuSection = () => {
     rouer.push(URL_DASHBOARD);
   };
   return (
-    <div className="w-60 h-full z-20 fixed md:flex flex-col hidden  bg-gray-100 text-black">
+    <div className="w-60 h-full z-10 fixed md:flex flex-col hidden  bg-gray-100 text-black">
       <div className=" p-10 gap-4 flex flex-row  items-end justify-center">
         <div className="flex justify-center items-center">
           <UserButton

@@ -4,16 +4,20 @@ import CategoryTablePage from "@/modal/table/table-page";
 import { useModal } from "@/modal/popup/use-modal-store";
 import { Info } from "lucide-react";
 import NavigationInput from "@/components/navigation/navigation-input";
-import { URL_ADMIN_PRODUCT, URL_API_PRODUCT } from "@/constants/url-constant";
+import { URL_ADMIN_PRODUCT, URL_API_PRODUCT, URL_API_PROFILE, URL_DASHBOARD } from "@/constants/url-constant";
 import TablePage from "@/modal/table/table-page";
 import { columns } from "@/modal/table/product/columns";
-
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import qs from "query-string";
+import axios, { AxiosResponse } from "axios";
 export const ProductPage = () => {
   const { onOpen, setIsRefresh } = useModal();
   const refreshPage = () => {
     setIsRefresh(true);
     setTimeout(() => setIsRefresh(false), 1000);
   };
+
   
   return (
     <div className="flex flex-col">

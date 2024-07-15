@@ -13,4 +13,5 @@ export const URL_ADMIN_ORDER = "/admin/order";
 //API
 export const URL_API_CATEGORY = "/api/category";
 export const URL_API_PRODUCT = "/api/product";
+export const URL_API_PROFILE = "/api/profile";
 export const URL_API_ORDER = "/api/order";

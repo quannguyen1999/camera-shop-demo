@@ -16,6 +16,7 @@ export const ProductBody = ({ data, loading = false }: ProductBodyProps) => {
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5  row-span-3 gap-10 px-2 ">
         {data.map((t: any) => (
           <ProductShadow
+            key={t.id}
             name={t.name}
             imageUrl={t.imageUrl}
             content={t.content}
