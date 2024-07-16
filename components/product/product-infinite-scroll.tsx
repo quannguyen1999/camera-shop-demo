@@ -12,19 +12,11 @@ interface ProductBodyProps {
 export const ProductInfiniteScroll = ({ categoryId }: ProductBodyProps) => {
   const { ref, inView } = useInView();
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    categoryId == undefined || categoryId.length <= 0
-      ? useInfiniteStore({
-          apiUrl: `${URL_API_PRODUCT}`,
-          paramKey: "productName",
-          paramValue: "",
-          queryKey: "",
-        })
-      : useInfiniteStore({
-          apiUrl: `${URL_API_CATEGORY}/${categoryId}/get-list-product`,
-          paramKey: "categoryId",
-          paramValue: categoryId,
-          queryKey: categoryId,
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteStore({
+          apiUrl: categoryId == undefined || categoryId.length <= 0 ?  `${URL_API_PRODUCT}` : `${URL_API_CATEGORY}/${categoryId}/get-list-product`,
+          paramKey: categoryId == undefined || categoryId.length <= 0 ? 'productName' : "categoryId",
+          paramValue: categoryId == undefined || categoryId.length <= 0 ? '' : categoryId,
+          queryKey: categoryId == undefined || categoryId.length <= 0 ? '' : categoryId,
         });
   useEffect(() => {
     if (inView && hasNextPage) {
