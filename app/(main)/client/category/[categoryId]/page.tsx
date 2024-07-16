@@ -38,7 +38,7 @@ const CategoryIdPage = ({ params }: CatgegoryHeaderPageProps) => {
   }, [pathName, setIsMainPage]);
 
   return (
-    <div className="flex flex-col md:px-20 px-2 pt-1">
+    <div className="flex flex-col md:px-28 px-2 pt-1">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 row-span-3  pt-40">
         <div className="justify-start flex flex-row gap-2">
           <CategoryHeader category={values} />

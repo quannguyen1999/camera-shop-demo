@@ -15,10 +15,18 @@ import { URL_API_PRODUCT, URL_DASHBOARD } from "@/constants/url-constant";
 import qs from "query-string";
 import axios, { AxiosResponse } from "axios";
 import { LoadingFullScreen } from "@/components/loading-full-screen";
+import { SPACE_MARGIN_SCREEN } from "@/util/css-util";
+import { useMenuStore } from "@/hook/use-menu-store";
+import { ProductInfiniteScroll } from "@/components/product/product-infinite-scroll";
 const DashboardPage = () => {
   const pathName = usePathname();
-
+  const [product, setProduct] = useState([]);
+  const [loadingTopSell, setLoadingTopSell] = useState(false);
+  const [loadingScreen, setLoadingScreen] = useState(true);
+  const [data, setData] = useState<any>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { setIsMainPage } = useScrollStore();
+
   useEffect(() => {
     if (pathName.includes(URL_DASHBOARD)) {
       setIsMainPage(true);
@@ -27,11 +35,6 @@ const DashboardPage = () => {
     }
   }, [pathName, setIsMainPage]);
 
-  const [data, setData] = useState<any>([]);
-  const [loadingTopSell, setLoadingTopSell] = useState(false);
-  const [loadingScreen, setLoadingScreen] = useState(true);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const getData = async () => {
       setLoadingTopSell(true);
@@ -39,7 +42,7 @@ const DashboardPage = () => {
       const datas = await axios.get(url, {
         // query URL without using browser cache
         headers: {
-          'Cache-Control': 'no-cache'
+          "Cache-Control": "no-cache",
         },
       });
       setData(datas.data.items);
@@ -50,50 +53,52 @@ const DashboardPage = () => {
   }, []);
 
   useEffect(() => {
+    const getListProduct = async () => {
+      const datas = await axios.get(URL_API_PRODUCT);
+      setProduct(datas.data.items);
+      // setTotalRecord(datas.data.total);
+      // setNextCursor(datas.data.nextCursor);
+      // setFirstCursor(datas.data.firstCursor);
+    };
+
+    getListProduct();
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingScreen(false);
     }, 1000); // 2 seconds
     if (scrollRef.current) {
-      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <>
-      {/* {loadingScreen && <LoadingFullScreen /> } */}
-      <div  ref={scrollRef}  className={cn("flex flex-col gap-4 bg-gray-100")}>
-        <DashboardCarousel />
-        <div className="px-4">
-          <SeparatorItem name="ĐỒ TRANG TRÍ" />
-        </div>
-        <CategoryBody />
-        <div className="px-4">
-          <SeparatorItem name="SẢN PHẨM BÁN CHẠY" />
-        </div>
-        <div className="px-4">
-          <ProductBody loading={loadingTopSell} data={data} />
-        </div>
-
-        <Separator />
-        <InfScroll />
-        <div className="px-4">
-          <SeparatorItem name="PHÔNG NỀN CHỤP ẢNH" />
-        </div>
-        <div className="px-4">
-          <ProductBody loading={loadingTopSell} data={data} />
-        </div>
-        {/* <ImageShadow
-        body={
-          <div className="flex h-96">
-            <p>.</p>
-          </div>
-        }
-        key={2}
-        imageUrl={`bg-[url('/images/${DASHBOARD_2}')]`}
-      /> */}
+    <div ref={scrollRef} className={cn("flex flex-col gap-4 bg-gray-100")}>
+      <DashboardCarousel />
+      <div className="px-4">
+        <SeparatorItem name="ĐỒ TRANG TRÍ" />
       </div>
-    </>
+      <div className={cn(SPACE_MARGIN_SCREEN)}>
+        <CategoryBody />
+      </div>
+
+      <div className="px-4">
+        <SeparatorItem name="SẢN PHẨM BÁN CHẠY" />
+      </div>
+      <div className={cn(SPACE_MARGIN_SCREEN)}>
+        <ProductBody loading={loadingTopSell} data={data} />
+      </div>
+      <Separator />
+      <InfScroll />
+      <div className="px-4">
+        <SeparatorItem name="Danh sách sản phẩm" />
+      </div>
+      <div className={cn(SPACE_MARGIN_SCREEN)}>
+        <ProductInfiniteScroll categoryId={""} />
+      </div>
+    </div>
   );
 };
 

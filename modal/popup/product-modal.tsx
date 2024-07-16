@@ -75,6 +75,7 @@ export const AddProductModal = () => {
     setPrice(0);
     setCategoryId("");
     setName("");
+    setImages([]);
   };
 
   useEffect(() => {
@@ -216,7 +217,7 @@ export const AddProductModal = () => {
 
     setIsRefresh(true);
     toast.success(messageSuccess);
-    setTimeout(() => setIsRefresh(false), 1000);
+    setIsRefresh(false)
   };
 
   const isValid = (value: string) => {
@@ -252,7 +253,7 @@ export const AddProductModal = () => {
           <DialogTitle className="text-base  dark:text-white">
             {type == ADD_CONSTANT ? "Thêm Sản phẩm" : "Sửa Sản phẩm"}
           </DialogTitle>
-          <div className="flex flex-col p-4 gap-3 h-96 overflow-auto ">
+          <div className="flex flex-col p-4 gap-3 h-80 overflow-auto ">
             <div className="flex flex-row gap-2">
            
               <ComboboxItem

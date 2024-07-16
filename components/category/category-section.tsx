@@ -100,7 +100,7 @@ export const CategorySection = ({ categoryId }: CategorySection) => {
   return (
     <div className="flex-col hidden md:flex">
       <div className="relative h-40 w-40">
-        <div className=" absolute w-full h-full">
+        <div className=" absolute w-full h-full mt-5">
           {imageUrl == undefined || imageUrl.trim().length <= 0 ? (
             <div className="rounded-full border border-gray-200 flex w-full h-full items-center justify-center">
               <CircleAlert />
@@ -116,7 +116,7 @@ export const CategorySection = ({ categoryId }: CategorySection) => {
           )}
         </div>
       </div>
-      <div className="pt-5">
+      <div className="pt-8">
       {data.map((t) => {
         return (
           <div key={t.menuHeader}>

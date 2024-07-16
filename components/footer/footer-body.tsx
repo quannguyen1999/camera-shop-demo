@@ -1,9 +1,14 @@
 import { cn } from "@/lib/utils";
 import { Book, Facebook, Instagram, Ticket } from "lucide-react";
 import Image from "next/image";
+import { ElementRef, useEffect, useRef } from "react";
 export const FooterBody = () => {
+  const bottomRef = useRef<ElementRef<"div">>(null);
+  useEffect(() => {
+    console.log(bottomRef)
+  }, [bottomRef])
   return (
-    <div className="mt-5 gap-5 z-10 p-10 bg-yellow-800 text-white flex flex-col md:flex-row">
+    <div ref={bottomRef} className="mt-5 gap-5 z-10 p-10 bg-white text-black footer  flex flex-col md:flex-row">
       <div className="rounded-full items-center justify-center flex">
         <Image
           src="/logo.svg"

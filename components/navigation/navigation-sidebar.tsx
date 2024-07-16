@@ -5,7 +5,6 @@ import { BadToggle } from "../bag/bag-toggle";
 import { NavigationToggle } from "../navigation-toggle";
 import { BagHeader } from "../bag/bag-header";
 import { BagBody } from "../bag/bag-body";
-import { Dancing_Script } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { User } from "lucide-react";
@@ -15,10 +14,8 @@ import {
   URL_API_PROFILE,
   URL_DASHBOARD,
 } from "@/constants/url-constant";
-import { UserButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import qs from "query-string";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useMenuStore } from "@/hook/use-menu-store";
 import { AccordionToggle } from "../accordion-toggle";
 import { MenuHeader } from "../menu/menu-header";
@@ -48,7 +45,7 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
     };
     getProfile();
   }, []);
-  const { data, setData } = useMenuStore();
+  const { data } = useMenuStore();
   return (
     <div
       className={cn(
@@ -101,7 +98,7 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
             isScrolled ? "text-black" : "text-white"
           )}
         >
-          Decor{" "}
+          Decor
         </div>
       </div>
       <div className="flex-1 hidden md:flex ">

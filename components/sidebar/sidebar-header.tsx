@@ -42,7 +42,7 @@ const SideBarHeader = ({
         ))}
 
         <div className="cursor-pointer flex flex-row text-center justify-center items-center">
-          Feedback
+          Liên hệ
         </div>
       </div>
 

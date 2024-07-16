@@ -1,7 +1,9 @@
+import { URL_PRODUCT } from "@/constants/url-constant";
 import { useOrderStore } from "@/hook/use-order-store";
 import { formatNumberToCurrency } from "@/util/function-util";
 import { BadgeX } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface BadItemProps {
     id: string,
@@ -21,12 +23,16 @@ export const BadItem = ({
     totalItem
 }: BadItemProps) => {
   const {data, setOrder} = useOrderStore();
+  const router = useRouter();
   const removeItem = () => {
     data.products = data.products?.filter((t) => t.id != id);
     setOrder(data);
   }
+  const redirectToDetailPage = () => {
+    router.push(`${URL_PRODUCT}/${id}`)
+  }
   return (
-    <div className="flex flex-row p-1 gap-2 hover:bg-gray-100 cursor-pointer items-center justify-center">
+    <div onClick={() => redirectToDetailPage()} className="flex flex-row p-1 gap-2 hover:bg-gray-100 cursor-pointer items-center justify-center" >
       <div>
         <Image height={40} width={40} src={url} alt="logo" />
       </div>

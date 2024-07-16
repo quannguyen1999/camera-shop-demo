@@ -9,7 +9,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ImageOff, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
-import { error } from "console";
 import { formatISOStringToDate } from "@/util/function-util";
 
 // This type is used to define the shape of our data.

@@ -32,6 +32,12 @@ export const columns: ColumnDef<Product>[] = [
     // enableHiding: false,
   },
   {
+    accessorKey: "name",
+    header: "Tên sản phẩm",
+    // enableSorting: true,
+    // enableHiding: false,
+  },
+  {
     accessorKey: "quantity",
     header: "Số lượng",
     // enableSorting: true,

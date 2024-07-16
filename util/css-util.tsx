@@ -1,0 +1,1 @@
+export const SPACE_MARGIN_SCREEN = "md:px-20 px-2";
