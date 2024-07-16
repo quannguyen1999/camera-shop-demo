@@ -4,7 +4,6 @@ import { auth as authX } from "@clerk/nextjs/server";
 const f = createUploadthing();
 
 const handleAuth = () => {
-    console.log("checking auth")
     const {userId} = authX();
     if(!userId) throw new Error('Unauthorized');
     return {userId: userId};

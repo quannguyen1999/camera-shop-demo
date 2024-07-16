@@ -43,8 +43,6 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-   
-
     const { searchParams } = new URL(req.url);
 
     const nextCursor = searchParams.get("nextCursor");

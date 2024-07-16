@@ -7,7 +7,7 @@ import { ActionTooltip } from "../action-tooltip";
 import { useState } from "react";
 import { useOrderStore } from "@/hook/use-order-store";
 import { toast } from "sonner";
-import { formatNumberToCurrency } from "@/util/function-util";
+import { dancingScript, formatNumberToCurrency } from "@/util/function-util";
 
 interface ProductShadowProps {
   imageUrl: string;
@@ -15,6 +15,7 @@ interface ProductShadowProps {
   price: number;
   id: string;
   name: string;
+  innerRef?: (node ?: Element | null | undefined) => void;
 }
 
 export const ProductShadow = ({
@@ -23,6 +24,7 @@ export const ProductShadow = ({
   price,
   id,
   name,
+  innerRef
 }: ProductShadowProps) => {
   const router = useRouter();
 
@@ -63,7 +65,7 @@ export const ProductShadow = ({
   };
 
   return (
-    <div className="group relative shadow-xl flex flex-col flex-1 text-center">
+    <div className="group relative shadow-xl flex flex-col flex-1 text-center" ref={innerRef}>
       {imageUrl == null || imageUrl.trim().length <= 0 ? (
         <PilcrowSquare />
       ) : (
@@ -71,12 +73,12 @@ export const ProductShadow = ({
           src={imageUrl}
           width={600}
           height={600}
-          alt="hehe"
-          className="h-52 scale-90 group-hover:scale-100 transition-all"
+          alt="none"
+          className="rounded-md h-56 scale-90 group-hover:scale-100 transition-all"
         />
       )}
 
-      <p>{content}</p>
+      <p className={cn("font-bold text-lg", dancingScript.className)}>{content}</p>
       <p>{formatNumberToCurrency(price)}</p>
 
       <div className="flex  hover:bg-gray-800  flex-col text-center items-center justify-center absolute w-full h-full bg-gray bg-opacity-40 hover:bg-opacity-20 transition-all cursor-pointer">
@@ -86,11 +88,11 @@ export const ProductShadow = ({
               <div
                 onClick={() => likeCall()}
                 className={cn(
-                  "p-2 rounded-full bg-white text-black cursor-pointer hover:text-orange-400 transition-all",
+                  "p-2 rounded-full bg-gray-700 opacity-55 text-white cursor-pointer hover:text-orange-400 transition-all",
                   like && "bg-red-500 text-white hover:text-white"
                 )}
               >
-                <Heart size={20} />
+                <Heart size={18} />
               </div>
             </ActionTooltip>
           </div>
@@ -98,7 +100,7 @@ export const ProductShadow = ({
             <ActionTooltip side="top" label="Thêm giỏ hàng">
               <div
                 onClick={() => addToCart()}
-                className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all"
+                className="p-2 rounded-full bg-gray-700 opacity-55 text-white cursor-pointer hover:text-orange-400 transition-all"
               >
                 <ShoppingCart size={20} />
               </div>
@@ -106,7 +108,7 @@ export const ProductShadow = ({
           </div>
           <div className="relative">
             <ActionTooltip side="top" label="Xem chi tiết">
-              <div onClick={() => goDetailPage()} className="p-2 bg-white rounded-full text-black cursor-pointer hover:text-orange-400 transition-all">
+              <div onClick={() => goDetailPage()} className="p-2 rounded-full bg-gray-700 opacity-55 text-white cursor-pointer hover:text-orange-400 transition-all">
                 <ArrowRight size={20} />
               </div>
             </ActionTooltip>

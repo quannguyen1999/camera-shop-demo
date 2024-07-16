@@ -5,7 +5,7 @@ import queryString from "query-string";
 interface ChatQueryProps {
     queryKey: string;
     apiUrl: string;
-    paramKey: 'categoryId';
+    paramKey: 'categoryId' | 'productName';
     paramValue: string;
 }
 
