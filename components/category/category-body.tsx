@@ -15,7 +15,12 @@ export const CategoryBody = () => {
       setLoading(true);
       const url = qs.stringifyUrl({ url: `${URL_API_CATEGORY}/get-all-name` });
 
-      const datas = await axios.get(url);
+      const datas = await axios.get(url,{
+        // query URL without using browser cache
+        headers: {
+          "Cache-Control": "no-cache",
+        },
+      });
       setDatas(datas.data.items);
       setLoading(false);
     };

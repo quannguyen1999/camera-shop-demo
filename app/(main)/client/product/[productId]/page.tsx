@@ -85,7 +85,7 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
       if (data != null) {
         setImages(data.data.images);
         setProduct(data.data.products);
-        getListProduct(data.data.products.categoryId);
+        getListProduct(data.data.products?.categoryId);
       }
 
       setLoading(false);
