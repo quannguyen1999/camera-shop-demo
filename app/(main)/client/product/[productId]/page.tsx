@@ -19,6 +19,7 @@ import { URL_API_CATEGORY } from "@/constants/url-constant";
 import axios, { AxiosResponse } from "axios";
 import { toast } from "sonner";
 import { LoadingItem } from "@/components/loading-item";
+import { SkeletonLoading } from "@/components/skeletron-loading";
 interface ProductIdPageProps {
   params: {
     productId: string;
@@ -57,7 +58,7 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
   ];
   const [images, setImages] = useState<ImageModal[]>([]);
   const [product, setProduct] = useState<ProductDetailProps>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const pathName = usePathname();
   const { setIsMainPage } = useScrollStore();
   const [data, setData] = useState<any>([]);
@@ -100,8 +101,8 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
         },
       });
       const datas = await axios.get(url);
-
-      setData(datas.data.items);
+      // datas.data.items.filter((t: any) => t. !== params.productId)
+      setData(datas.data.items.filter((t: any) => t.id !== params.productId));
     };
 
   
@@ -116,7 +117,7 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="col-span-1">
-          {loading && <LoadingItem />}
+          {loading && <SkeletonLoading height={96} width={96}/>} 
           <CarouselProduct images={images} />
         </div>
         <div className="col-span-2 flex flex-col gap-4">

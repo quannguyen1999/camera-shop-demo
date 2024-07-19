@@ -6,11 +6,15 @@ import { BadgeX, ShoppingCart } from "lucide-react";
 import { LoadingItem } from "../loading-item";
 import { useChatScroll } from "@/hook/use-auto-scroll";
 import { useInView } from "react-intersection-observer";
+import { useScrollStore } from "@/hook/use-scroll-store";
+import { cn } from "@/lib/utils";
 interface ProductBodyProps {
   categoryId: string;
 }
 export const ProductInfiniteScroll = ({ categoryId }: ProductBodyProps) => {
   const { ref, inView } = useInView();
+
+  const {isInMainPage} = useScrollStore();
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteStore({
           apiUrl: categoryId == undefined || categoryId.length <= 0 ?  `${URL_API_PRODUCT}` : `${URL_API_CATEGORY}/${categoryId}/get-list-product`,
@@ -34,13 +38,14 @@ export const ProductInfiniteScroll = ({ categoryId }: ProductBodyProps) => {
             <p>Không có sản phẩm nào</p>
           </div>
         ))}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5  row-span-3 gap-10 px-2 ">
+      <div className={cn("grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 row-span-3 gap-5 px-2", isInMainPage  ? `xl:grid-cols-5` : `xl:grid-cols-4`)}>
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
             {group.items.map((t: any) => {
                if (data?.pages.length == i + 1){
                 return (
                   <ProductShadow
+                 
                     key={t.id}
                     name={t.name}
                     imageUrl={t.imageUrl}

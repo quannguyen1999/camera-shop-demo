@@ -11,8 +11,7 @@ import { useModal } from "./use-modal-store";
 export const ImageModal = () => {
     const { isOpen, onClose, type, image, setImage } = useModal();
 
-    const isModalOpen =
-    isOpen && (type === 'detailImage' );
+    const isModalOpen =  isOpen && (type === 'detailImage' );
 
     const handleClose = () => {
         onClose();

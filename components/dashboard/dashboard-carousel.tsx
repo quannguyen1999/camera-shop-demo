@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { CarouselToggle } from "../carousel-toggle";
-import { DashboardItemCarousel } from "./dashboard-item-carousel";
 import { ImageShadow } from "../image/image-shadow";
 import { Button } from "../ui/button";
 import { Dancing_Script } from "next/font/google";

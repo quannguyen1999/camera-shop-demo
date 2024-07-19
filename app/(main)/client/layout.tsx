@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useScrollStore } from "@/hook/use-scroll-store";
 import { QueryProvider } from "@/provider/query-provider";
+import { ImageModal } from "@/modal/popup/image-modal";
 
 export default function RootLayout({
   children,
@@ -28,20 +29,23 @@ export default function RootLayout({
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <div
-        className={cn(
-          "fixed z-10 w-full md:h-16 h-28 top-0 left-0 bg-transparent",
-          isScrolled && "shadow-xl"
-        )}
-      >
-        <NavigationSidebar isScrolled={!isInMainPage ? true : isScrolled} />
-        <SideBarHeader isScrolled={!isInMainPage ? true : isScrolled} />
+    <>
+      <ImageModal />
+      <div className="flex flex-col">
+        <div
+          className={cn(
+            "fixed z-10 w-full md:h-16 h-28 top-0 left-0 bg-transparent",
+            isScrolled && "shadow-xl"
+          )}
+        >
+          <NavigationSidebar isScrolled={!isInMainPage ? true : isScrolled} />
+          <SideBarHeader isScrolled={!isInMainPage ? true : isScrolled} />
+        </div>
+        <QueryProvider>
+          <div className="flex-1">{children}</div>
+        </QueryProvider>
+        <FooterBody />
       </div>
-      <QueryProvider>
-        <div className="flex-1">{children}</div>
-      </QueryProvider>
-      <FooterBody />
-    </div>
+    </>
   );
 }

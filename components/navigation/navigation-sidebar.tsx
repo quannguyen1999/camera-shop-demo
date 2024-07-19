@@ -12,6 +12,7 @@ import { useScrollStore } from "@/hook/use-scroll-store";
 import {
   URL_ADMIN_CATEGORY,
   URL_API_PROFILE,
+  URL_CONTACT,
   URL_DASHBOARD,
 } from "@/constants/url-constant";
 import { useEffect, useState } from "react";
@@ -46,6 +47,9 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
     getProfile();
   }, []);
   const { data } = useMenuStore();
+  const navigateToContactPage = () => {
+    router.push(URL_CONTACT);
+  };
   return (
     <div
       className={cn(
@@ -67,6 +71,17 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
                   menuBody={<MenuItems listChild={t.listChild} />}
                 />
               ))}
+              <AccordionToggle
+                menuHeader={<>Liên hệ</>}
+                menuBody={
+                  <div
+                    className="flex items-start pl-10 cursor-pointer hover:bg-gray-200 py-5 transition-all"
+                    onClick={() => navigateToContactPage()}
+                  >
+                    Thông tin
+                  </div>
+                }
+              />
             </>
           }
         />
@@ -79,26 +94,10 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
           <Image
             src="/logo.svg"
             alt="Upload"
-            width={35}
-            height={35}
+            width={150}
+            height={150}
             className="rounded-full"
           />
-        </div>
-        <div
-          className={cn(
-            "text-xs uppercase",
-            isScrolled ? "text-black" : "text-white"
-          )}
-        >
-          Queenie’s
-        </div>
-        <div
-          className={cn(
-            "text-xs uppercase ",
-            isScrolled ? "text-black" : "text-white"
-          )}
-        >
-          Decor
         </div>
       </div>
       <div className="flex-1 hidden md:flex ">

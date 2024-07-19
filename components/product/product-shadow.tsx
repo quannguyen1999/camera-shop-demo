@@ -15,6 +15,7 @@ interface ProductShadowProps {
   price: number;
   id: string;
   name: string;
+  height?: number;
   innerRef?: (node ?: Element | null | undefined) => void;
 }
 
@@ -24,6 +25,7 @@ export const ProductShadow = ({
   price,
   id,
   name,
+  height = 56,
   innerRef
 }: ProductShadowProps) => {
   const router = useRouter();
@@ -74,7 +76,7 @@ export const ProductShadow = ({
           width={600}
           height={600}
           alt="none"
-          className="rounded-md h-56 scale-90 group-hover:scale-100 transition-all"
+          className={cn("rounded-md scale-90 group-hover:scale-100 transition-all md:h-30 lg:h-56",`h-${height}`)}
         />
       )}
 

@@ -6,7 +6,6 @@ import { ImageShadow } from "@/components/image/image-shadow";
 import { ProductBody } from "@/components/product/product-body";
 import { SeparatorItem } from "@/components/separator/separator-item";
 import { Separator } from "@/components/ui/separator";
-import { DASHBOARD_2 } from "@/constants/image-constant";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -56,9 +55,6 @@ const DashboardPage = () => {
     const getListProduct = async () => {
       const datas = await axios.get(URL_API_PRODUCT);
       setProduct(datas.data.items);
-      // setTotalRecord(datas.data.total);
-      // setNextCursor(datas.data.nextCursor);
-      // setFirstCursor(datas.data.firstCursor);
     };
 
     getListProduct();

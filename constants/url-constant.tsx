@@ -4,6 +4,7 @@ export const URL_DASHBOARD = "/client";
 export const URL_CATEGORY = "/client/category";
 export const URL_PRODUCT = "/client/product";
 export const URL_CART = "/client/cart";
+export const URL_CONTACT = "/client/contact";
 
 //Admin
 export const URL_ADMIN_CATEGORY = "/admin/category";

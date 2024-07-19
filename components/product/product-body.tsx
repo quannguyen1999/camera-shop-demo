@@ -13,7 +13,12 @@ export const ProductBody = ({ data, loading = false }: ProductBodyProps) => {
   return (
     <>
       {loading && <LoadingItem />}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5  row-span-3 gap-10 px-2 ">
+      {data.length <= 0 && (
+        <div className="flex items-center justify-center font-bold text-lg text-gray-700">
+          <p>Không có sản phẩm nào</p>
+        </div>
+      )}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  row-span-3 gap-5 px-2 ">
         {data.map((t: any) => (
           <ProductShadow
             key={t.id}
