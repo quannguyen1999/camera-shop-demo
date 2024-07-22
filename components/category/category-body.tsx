@@ -13,15 +13,20 @@ export const CategoryBody = () => {
   useEffect(() => {
     const getCategories = async () => {
       setLoading(true);
-      const url = qs.stringifyUrl({ url: `${URL_API_CATEGORY}/get-all-name` });
+      // Define the base URL and query parameters separately
+      const baseUrl = `${URL_API_CATEGORY}/get-all-name`;
+      const queryParams = { timestamp: new Date().getTime() };
 
-      const datas = await axios.get(url,{
-        // query URL without using browser cache
+      // Use qs.stringify to properly serialize query parameters
+      const url = `${baseUrl}?${qs.stringify(queryParams)}`;
+
+      const response = await axios.get(url, {
+        // Query URL without using browser cache
         headers: {
           "Cache-Control": "no-cache",
         },
       });
-      setDatas(datas.data.items);
+      setDatas(response.data.items);
       setLoading(false);
     };
 
@@ -30,19 +35,21 @@ export const CategoryBody = () => {
 
   return (
     <>
-    {
-      loading && <LoadingItem></LoadingItem>
-    }
-     <div
-      className={cn(
-        "grid grid-cols-2 sm:grid-cols-3 ms:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2  row-span-3 px-2 md:px-20"
-      )}
-    >
-      {datas.map((t: any) => (
-        <CategoryShadow key={t.id} id={t.id} imageUrl={t.imageUrl} content={t.contentMenuChild} />
-      ))}
-    </div>
+      {loading && <LoadingItem></LoadingItem>}
+      <div
+        className={cn(
+          "grid grid-cols-2 sm:grid-cols-3 ms:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2  row-span-3 px-2 md:px-20"
+        )}
+      >
+        {datas.map((t: any) => (
+          <CategoryShadow
+            key={t.id}
+            id={t.id}
+            imageUrl={t.imageUrl}
+            content={t.contentMenuChild}
+          />
+        ))}
+      </div>
     </>
-   
   );
 };

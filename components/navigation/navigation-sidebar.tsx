@@ -53,7 +53,7 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
   return (
     <div
       className={cn(
-        "md:shadow-none px-12 pt-7 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all",
+        "md:shadow-none px-12 pt-1 flex flex-row h-full  gap-5 md:items-center md:justify-center text-center transition-all",
         isScrolled ? "bg-white" : "bg-transparent",
         !isInMainPage && "shadow-2xl"
       )}
@@ -88,7 +88,7 @@ const NavigationSidebar = ({ isScrolled }: NavigationSidebarProps) => {
       </div>
       <div
         onClick={() => navigateToMainPage()}
-        className={cn("flex flex-col gap-1 flex-1 md:flex-none cursor-pointer")}
+        className={cn("flex flex-col items-center justify-center gap-1 flex-1 md:flex-none cursor-pointer")}
       >
         <div className="flex flex-col justify-center items-center">
           <Image
