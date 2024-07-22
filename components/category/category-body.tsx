@@ -23,7 +23,9 @@ export const CategoryBody = () => {
       const response = await axios.get(url, {
         // Query URL without using browser cache
         headers: {
-          "Cache-Control": "no-cache",
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0"
         },
       });
       setDatas(response.data.items);
